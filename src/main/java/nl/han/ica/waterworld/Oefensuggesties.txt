@@ -1,0 +1,9 @@
+* Zorg dat de bellen zodra ze door de speler worden aangeraakt roze worden.
+* Zorg dat er twee zwaardvissen gaan rondzwemmen (de tweede met een andere snelheid dan de eerste).
+* Introduceer een tweede tiletype (let op: die moet even groot zijn als de eerste!) waar bellen
+  niet doorheen kunnen: als ze daar tegenaan komen, blijven ze dus hangen.
+* Zorg dat de player naar een willekeurige plek in de wereld teleporteert als-ie een
+  zwaardvis aanraakt.
+* Maak er een spelletje van zodat de speler bellen kan vangen: voor elke bel krijgt hij punten,
+  voor elke keer dat hij een zwaardvis raakt, raakt hij punten kwijt. Uiteraard moet de
+  score in beeld zijn (in plaats van het aantal geknapte bellen) en wordt de highscore opgeslagen.

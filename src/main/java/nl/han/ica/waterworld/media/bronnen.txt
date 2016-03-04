@@ -1,0 +1,22 @@
+Bij het gebruik van mediabestanden,
+moet je aangeven waar deze vandaan komen
+(vooral bij degene die je niet zelf hebt
+gemaakt).
+
+Enkele suggesties voor websites
+waar veel vrij te gebruiken materiaal te vinden is:
+
+http://opengameart.org
+https://commons.wikimedia.org
+http://www.clker.com
+
+Voeg aan je project een bestand toe (zoals dit) waarin
+je van alle mediabestanden aangeeft waar ze vandaan
+komen. Dat kan bijvoorbeeld op onderstaande manier:
+
+background.jpg      -> https://commons.wikimedia.org/wiki/File:Undervann0002.jpg
+boards.jpg          -> http://opengameart.org/node/8137
+player.png          -> http://www.widgetworx.com/spritelib/
+pop.mp3             -> http://opengameart.org/content/bubbles-pop (geconverteerd naar mp3)
+Waterworld.mp3    	-> Zelfgemaakt
+zwaardvis.png       -> http://opengameart.org/content/fish-pack
