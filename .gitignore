@@ -25,9 +25,14 @@ hs_err_pid*
 # Eclipse
 .classpath
 .project
+.settings
+/target
 
 # Waterworld example log and persistence file
 src/main/java/nl/han/ica/waterworld/media/bubblesPopped.txt
 
 # OOPG engine log file
 src/main/java/nl/han/ica/OOPDProcessingEngineHAN/Logger/Log.log
+
+# Visual Studio Code
+.vscode
