@@ -1,5 +1,3 @@
-*.class
-
 # IntelliJ
 out
 .idea
@@ -27,11 +25,15 @@ hs_err_pid*
 .project
 .settings
 
+# Maven
+/target
+*.class
+
 # Waterworld example log and persistence file
 src/main/java/nl/han/ica/waterworld/media/bubblesPopped.txt
 
 # OOPG engine log file
-src/main/java/nl/han/ica/OOPDProcessingEngineHAN/Logger/Log.log
+src/main/java/nl/han/ica/oopdprocessingenginehan/logger/Log.log
 
 # Visual Studio Code
 .vscode
