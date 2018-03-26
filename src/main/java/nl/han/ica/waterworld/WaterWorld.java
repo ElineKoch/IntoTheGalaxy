@@ -23,7 +23,6 @@ public class WaterWorld extends GameEngine {
     private Sound backgroundSound;
     private Sound bubblePopSound;
     private TextObject dashboardText;
-    private BubbleSpawner bubbleSpawner;
     private int bubblesPopped;
     private IPersistence persistence;
     private Player player;
@@ -110,7 +109,7 @@ public class WaterWorld extends GameEngine {
      * Maakt de spawner voor de bellen aan
      */
     public void createBubbleSpawner() {
-        bubbleSpawner=new BubbleSpawner(this,bubblePopSound,2);
+        new BubbleSpawner(this,bubblePopSound,2);
     }
 
     /**
