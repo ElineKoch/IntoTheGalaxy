@@ -1,5 +1,8 @@
 *.class
 
+# Maven2
+target
+
 # IntelliJ
 out
 .idea
