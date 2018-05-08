@@ -8,10 +8,10 @@ import java.util.List;
  */
 public interface ICollidableWithTiles {
 
-	/**
-	 * This method will be triggered when a GameObject has collided with Tiles.
-	 * 
-	 * @param collidedTiles
-	 */
-	public void tileCollisionOccurred(List<CollidedTile> collidedTiles);
+    /**
+     * This method will be triggered when a GameObject has collided with Tiles.
+     *
+     * @param collidedTiles
+     */
+    void tileCollisionOccurred(List<CollidedTile> collidedTiles);
 }

@@ -1,6 +1,7 @@
 package nl.han.ica.OOPDProcessingEngineHAN.Engine;
 
 import ddf.minim.Minim;
+import nl.han.ica.OOPDProcessingEngineHAN.Collision.CollisionSide;
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.CollidedTile;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
@@ -22,7 +23,7 @@ import java.util.Vector;
 
 /**
  * GameEngine is the core of the game. Extending this class is required to make use of the GameEngine.
- * 
+ * <p>
  * This engine is created by: Bram Heijmink, Jeffrey Haen, Joost Elshof, Kenny Ligthart, Mark Vaesen & Nico Smolders.
  */
 public abstract class GameEngine extends PApplet {
@@ -31,7 +32,7 @@ public abstract class GameEngine extends PApplet {
      * A vectorlist that holds all GameObjects.
      */
     private Vector<GameObject> gameObjects = new Vector<>();
-    
+
     /**
      * A vectorlist that holds all Dashboards, which are of type GameObject.
      */
@@ -46,12 +47,12 @@ public abstract class GameEngine extends PApplet {
      * Thread is used to keep the update method running.
      */
     private GameThread gameThread = new GameThread(this);
- 
+
     /**
      * Creates an instance of minim that helps with loading music in the Sound class.
      */
     public Minim soundLibrary = new Minim(this);
-    
+
     /**
      * The View is the main canvas that is been drawn by the GameEngine.
      */
@@ -65,11 +66,11 @@ public abstract class GameEngine extends PApplet {
     private static GameEngine engine;
 
     /**
-     * Creates a new GameEngine object, use a static main method and implement the following: 
+     * Creates a new GameEngine object, use a static main method and implement the following:
      * PApplet.main(new String[]{"{YOUR.PACKAGENAME}.{YOUR.CLASSNAME}"});
      */
     public GameEngine() {
-    	
+
         GameEngine.engine = this;
     }
 
@@ -90,127 +91,138 @@ public abstract class GameEngine extends PApplet {
 
     /**
      * Sets the View which will be drawn by the GameEngine.
+     *
      * @param view
      */
     public void setView(View view) {
-    	this.view = view;
+        this.view = view;
     }
-    
+
     /**
      * Gets the View which is drawn by the GameEngine.
+     *
      * @return
      */
     public View getView() {
-    	return view;
-    }
-    
-    /**
-     * Add a GameObject to the GameEngine.
-     * @param gameObject
-     *            The GameObject that will be added to the game. Should have either
-     *            GameObject or MovableGameObject as it's parent.
-     */
-    public void addGameObject(GameObject gameObject) {
-    	gameObjects.add(gameObject);    	
-    }
-    
-    /**
-     * Add a Dashboard to the GameEngine.
-     * @param dashboard
-     */
-    public void addDashboard(Dashboard dashboard) {
-    	dashboards.add(dashboard);
+        return view;
     }
 
     /**
      * Add a GameObject to the GameEngine.
+     *
+     * @param gameObject The GameObject that will be added to the game. Should have either
+     *                   GameObject or MovableGameObject as it's parent.
+     */
+    public void addGameObject(GameObject gameObject) {
+        gameObjects.add(gameObject);
+    }
+
+    /**
+     * Add a Dashboard to the GameEngine.
+     *
+     * @param dashboard
+     */
+    public void addDashboard(Dashboard dashboard) {
+        dashboards.add(dashboard);
+    }
+
+    /**
+     * Add a GameObject to the GameEngine.
+     *
      * @param gameObject
      * @param x
      * @param y
      */
     public void addGameObject(GameObject gameObject, float x, float y) {
-    	addGameObject(gameObject);
-    	
+        addGameObject(gameObject);
+
         gameObject.setX(x);
         gameObject.setY(y);
     }
-    
+
     /**
      * Add a Dashboard to te GameEngine.
+     *
      * @param dashboard
      * @param x
      * @param y
      */
     public void addDashboard(Dashboard dashboard, float x, float y) {
-    	addDashboard(dashboard);
-    	
-    	dashboard.setX(x);
-    	dashboard.setY(y);
+        addDashboard(dashboard);
+
+        dashboard.setX(x);
+        dashboard.setY(y);
     }
 
     /**
      * Add a GameObject to the GameEngine.
+     *
      * @param gameObject
      * @param x
      * @param y
      * @param layerposition
      */
     public void addGameObject(GameObject gameObject, float x, float y, float layerposition) {
-    	addGameObject(gameObject);
-    	
+        addGameObject(gameObject);
+
         gameObject.setX(x);
         gameObject.setY(y);
         gameObject.setZ(layerposition);
     }
-    
+
     /**
      * Add a Dashboard to the GameEngine.
+     *
      * @param dashboard
      * @param x
      * @param y
      * @param layerposition
      */
     public void addDashboard(Dashboard dashboard, float x, float y, float layerposition) {
-    	addDashboard(dashboard);
-    	
-    	dashboard.setX(x);
-    	dashboard.setY(y);
-    	dashboard.setZ(layerposition);
+        addDashboard(dashboard);
+
+        dashboard.setX(x);
+        dashboard.setY(y);
+        dashboard.setZ(layerposition);
     }
 
     /**
      * Add a GameObject to the GameEngine.
+     *
      * @param gameObject
      * @param layerposition
      */
     public void addGameObject(GameObject gameObject, float layerposition) {
-    	addGameObject(gameObject);
-    	
+        addGameObject(gameObject);
+
         gameObject.setZ(layerposition);
     }
-    
+
     /**
      * Add a Dashboard to the GameEngine.
+     *
      * @param dashboard
      * @param layerposition
      */
     public void addDashboard(Dashboard dashboard, float layerposition) {
-    	addDashboard(dashboard);
-    	
+        addDashboard(dashboard);
+
         dashboard.setZ(layerposition);
     }
 
     /**
      * Get a list of all the GameObjects inside the GameEngine.
-     *  @return Vector<GameObject>
+     *
+     * @return Vector<GameObject>
      */
     public Vector<GameObject> getGameObjectItems() {
         return gameObjects;
     }
-    
+
     /**
      * Get a list of all the Dashboards inside the GameEngine.
-     *  @return Vector<Dashboard>
+     *
+     * @return Vector<Dashboard>
      */
     public Vector<Dashboard> getDashboards() {
         return dashboards;
@@ -218,14 +230,16 @@ public abstract class GameEngine extends PApplet {
 
     /**
      * Delete a GameObject from the GameEngine.
+     *
      * @param gameObject
      */
     public void deleteGameObject(GameObject gameObject) {
         gameObjects.remove(gameObject);
     }
-    
+
     /**
      * Delete a Dashboard from the GameEngine.
+     *
      * @param dashboard
      */
     public void deleteDashboard(Dashboard dashboard) {
@@ -238,7 +252,7 @@ public abstract class GameEngine extends PApplet {
     public void deleteAllGameOBjects() {
         gameObjects.removeAllElements();
     }
-    
+
     /**
      * Delete all Dashboards from the GameEngine.
      */
@@ -248,7 +262,7 @@ public abstract class GameEngine extends PApplet {
 
     /**
      * Delete all GameObjects of a given type from the GameEngine.
-     *
+     * <p>
      * Example paramater: Player.class
      *
      * @param type
@@ -261,16 +275,16 @@ public abstract class GameEngine extends PApplet {
     /**
      * Updates every GameObject inside the GameEngine.
      * Calls move method and checks for collision.
-     * 
+     * <p>
      * This method is called by the GameThread.
      */
     public void updateGame() {
-    	
+
         updateGameObjects();
         updateDashboards();
-        
+
         Vector<GameObject> tempCollision = (Vector<GameObject>) gameObjects.clone();
-        for(int i = 0; i < tempCollision.size(); i++) {
+        for (int i = 0; i < tempCollision.size(); i++) {
 
             if (tempCollision.get(i) instanceof ICollidableWithGameObjects) {
                 Vector collidedGameobjects = CollidingHelper.calculateGameObjectCollisions(tempCollision.get(i), tempCollision);
@@ -284,7 +298,7 @@ public abstract class GameEngine extends PApplet {
 
             }
         }
-        
+
         gameObjects.sort((obj1, obj2) -> Float.compare(obj1.getZ(), obj2.getZ())); // Sort the list by Z index...
     }
 
@@ -292,8 +306,8 @@ public abstract class GameEngine extends PApplet {
      * Updates every Dashboard inside the GameEngine.
      */
     private void updateDashboards() {
-    	
-        for(int i = 0; i < dashboards.size(); i++) {
+
+        for (int i = 0; i < dashboards.size(); i++) {
             dashboards.get(i).update();
         }
     }
@@ -302,8 +316,8 @@ public abstract class GameEngine extends PApplet {
      * Updates every GameObject inside the GameEngine.
      */
     private void updateGameObjects() {
-    	
-        for(int i = 0; i < gameObjects.size(); i++) {
+
+        for (int i = 0; i < gameObjects.size(); i++) {
             gameObjects.get(i).setySpeed(gameObjects.get(i).getySpeed() + gameObjects.get(i).getGravity());
             gameObjects.get(i).move();
             gameObjects.get(i).update();
@@ -314,193 +328,199 @@ public abstract class GameEngine extends PApplet {
      * Implement this method to make constant updates in your game
      */
     public abstract void update();
-        
+
     /**
      * Draws the view.
-     * 
+     * <p>
      * (non-Javadoc) This method is used by Processing to draw on the canvas.
+     *
      * @see processing.core.PApplet#draw()
      */
     public void draw() {
-    	view.draw(g, tileMap, gameObjects, dashboards);
+        view.draw(g, tileMap, gameObjects, dashboards);
     }
-    
-	/**
-	 * Fires a keyPressed event to every GameObject inside the GameEngine.
-	 * 
-	 * (non-Javadoc) This event is fired by Processing when registers key input.
-	 * @see processing.core.PApplet#keyPressed()
-	 */
-    public void keyPressed() {
-    	for (int i = 0; i < gameObjects.size(); i++) {
 
-            if(gameObjects.get(i) instanceof IKeyInput) {
-                ((IKeyInput)gameObjects.get(i)).keyPressed(keyCode, key);
+    /**
+     * Fires a keyPressed event to every GameObject inside the GameEngine.
+     * <p>
+     * (non-Javadoc) This event is fired by Processing when registers key input.
+     *
+     * @see processing.core.PApplet#keyPressed()
+     */
+    public void keyPressed() {
+        for (int i = 0; i < gameObjects.size(); i++) {
+
+            if (gameObjects.get(i) instanceof IKeyInput) {
+                ((IKeyInput) gameObjects.get(i)).keyPressed(keyCode, key);
             }
         }
     }
 
-	/**
-	 * Fires a keyReleased event to every GameObject inside the GameEngine.
-	 * 
-	 * (non-Javadoc) This event is fired by Processing when registers key release.
- 	 * @see processing.core.PApplet#keyReleased()
-	 */
+    /**
+     * Fires a keyReleased event to every GameObject inside the GameEngine.
+     * <p>
+     * (non-Javadoc) This event is fired by Processing when registers key release.
+     *
+     * @see processing.core.PApplet#keyReleased()
+     */
     public void keyReleased() {
         for (int i = 0; i < gameObjects.size(); i++) {
 
-            if(gameObjects.get(i) instanceof IKeyInput) {
-                ((IKeyInput)gameObjects.get(i)).keyReleased(keyCode, key);
+            if (gameObjects.get(i) instanceof IKeyInput) {
+                ((IKeyInput) gameObjects.get(i)).keyReleased(keyCode, key);
             }
         }
     }
-    
+
     /**
      * Fires a mousePressed event to every GameObject inside the GameEngine.
-     * 
+     * <p>
      * (non-Javadoc)
+     *
      * @see processing.core.PApplet#mousePressed()
      */
     public void mousePressed() {
-    	
-    	PVector location = calculateRelativeMouseLocation(mouseX, mouseY);
 
-    	for (int i = 0; i < gameObjects.size(); i++) {
+        PVector location = calculateRelativeMouseLocation(mouseX, mouseY);
 
-            if(gameObjects.get(i) instanceof IMouseInput)
-            {
-                ((IMouseInput)gameObjects.get(i)).mousePressed((int)location.x, (int)location.y, mouseButton);
+        for (int i = 0; i < gameObjects.size(); i++) {
+
+            if (gameObjects.get(i) instanceof IMouseInput) {
+                ((IMouseInput) gameObjects.get(i)).mousePressed((int) location.x, (int) location.y, mouseButton);
             }
         }
     }
-    
+
     /**
      * Fires a mouseReleased event to every GameObject inside the GameEngine.
-     *     
+     * <p>
      * (non-Javadoc)
+     *
      * @see processing.core.PApplet#mouseReleased()
      */
     public void mouseReleased() {
-    	
-    	PVector location = calculateRelativeMouseLocation(mouseX, mouseY);
 
-    	for (int i = 0; i < gameObjects.size(); i++) {
+        PVector location = calculateRelativeMouseLocation(mouseX, mouseY);
 
-            if(gameObjects.get(i) instanceof IMouseInput)
-            {
-                ((IMouseInput)gameObjects.get(i)).mouseReleased((int)location.x, (int)location.y, mouseButton);
+        for (int i = 0; i < gameObjects.size(); i++) {
+
+            if (gameObjects.get(i) instanceof IMouseInput) {
+                ((IMouseInput) gameObjects.get(i)).mouseReleased((int) location.x, (int) location.y, mouseButton);
             }
         }
     }
-    
+
     /**
      * Fires a mouseClicked event to every GameObject inside the GameEngine.
-     * 
+     * <p>
      * (non-Javadoc)
+     *
      * @see processing.core.PApplet#mouseClicked()
      */
     public void mouseClicked() {
-    	
-    	PVector location = calculateRelativeMouseLocation(mouseX, mouseY);
-    	
-    	for (int i = 0; i < gameObjects.size(); i++) {
 
-            if(gameObjects.get(i) instanceof IMouseInput)
-            {
-                ((IMouseInput)gameObjects.get(i)).mouseClicked((int)location.x, (int)location.y, mouseButton); 
+        PVector location = calculateRelativeMouseLocation(mouseX, mouseY);
+
+        for (int i = 0; i < gameObjects.size(); i++) {
+
+            if (gameObjects.get(i) instanceof IMouseInput) {
+                ((IMouseInput) gameObjects.get(i)).mouseClicked((int) location.x, (int) location.y, mouseButton);
             }
         }
     }
-    
+
     /**
      * Fires a mouseMoved event to every GameObject inside the GameEngine.
-     * 
+     * <p>
      * (non-Javadoc)
+     *
      * @see processing.core.PApplet#mouseMoved()
      */
     public void mouseMoved() {
-    	
-    	PVector location = calculateRelativeMouseLocation(mouseX, mouseY);
-    	
-    	for (int i = 0; i < gameObjects.size(); i++) {
 
-            if(gameObjects.get(i) instanceof IMouseInput)
-            {
-                ((IMouseInput)gameObjects.get(i)).mouseMoved((int)location.x, (int)location.y);
+        PVector location = calculateRelativeMouseLocation(mouseX, mouseY);
+
+        for (int i = 0; i < gameObjects.size(); i++) {
+
+            if (gameObjects.get(i) instanceof IMouseInput) {
+                ((IMouseInput) gameObjects.get(i)).mouseMoved((int) location.x, (int) location.y);
             }
         }
     }
-    
+
     /**
      * Fires a mouseDragged event to every GameObject inside the GameEngine.
-     * 
+     * <p>
      * (non-Javadoc)
+     *
      * @see processing.core.PApplet#mouseDragged()
      */
     public void mouseDragged() {
-    	
-    	PVector location = calculateRelativeMouseLocation(mouseX, mouseY);
-    	
-    	for (int i = 0; i < gameObjects.size(); i++) {
 
-            if(gameObjects.get(i) instanceof IMouseInput)
-            {	
-                ((IMouseInput)gameObjects.get(i)).mouseDragged((int)location.x, (int)location.y, mouseButton);
+        PVector location = calculateRelativeMouseLocation(mouseX, mouseY);
+
+        for (int i = 0; i < gameObjects.size(); i++) {
+
+            if (gameObjects.get(i) instanceof IMouseInput) {
+                ((IMouseInput) gameObjects.get(i)).mouseDragged((int) location.x, (int) location.y, mouseButton);
             }
         }
     }
-    
+
     /**
      * Fires a mouseWheel event to every GameObject inside the GameEngine.
-     * 
+     * <p>
      * (non-Javadoc)
+     *
      * @see processing.core.PApplet#mouseWheel(processing.event.MouseEvent)
      */
     public void mouseWheel(MouseEvent event) {
-    	
-    	for (int i = 0; i < gameObjects.size(); i++) {
 
-            if(gameObjects.get(i) instanceof IMouseInput)
-            {
-                ((IMouseInput)gameObjects.get(i)).mouseWheel((int) mouseEvent.getAmount());
+        for (int i = 0; i < gameObjects.size(); i++) {
+
+            if (gameObjects.get(i) instanceof IMouseInput) {
+                ((IMouseInput) gameObjects.get(i)).mouseWheel((int) mouseEvent.getAmount());
             }
         }
     }
 
     /**
      * Sets the amount of updates per second for the GameThread.
+     *
      * @param updatesPerSecond
      * @throws Exception
      */
     public void setGameSpeed(int updatesPerSecond) throws IllegalArgumentException {
-    	
-        if(updatesPerSecond < 1) 
+
+        if (updatesPerSecond < 1)
             throw new IllegalArgumentException("Updates per second must be equal or higher than 1");
-        else 
+        else
             gameThread.setGameSpeed(updatesPerSecond);
     }
 
     /**
      * Gets and calculates the relative mouse position with the location of world (TileMap).
      * A negative value means the mouse position is detected outside the world map.
+     *
      * @param x
      * @param y
      * @return PVector
      */
     public PVector calculateRelativeMouseLocation(int x, int y) {
-    	
-    	x += view.getViewport().getX();
-    	y += view.getViewport().getY();
-    	
-    	return new PVector(x, y);
+
+        x += view.getViewport().getX();
+        y += view.getViewport().getY();
+
+        return new PVector(x, y);
     }
-    
+
     /**
      * Gets the amount of updates per second from the GameThread.
+     *
      * @return int
      */
     public int getGameSpeed() {
-    	return (int)gameThread.getGameSpeed();
+        return (int) gameThread.getGameSpeed();
     }
 
     /**
@@ -528,6 +548,7 @@ public abstract class GameEngine extends PApplet {
 
     /**
      * Sets the TileMap which will be drawn by the View.
+     *
      * @param tileMap
      */
     public void setTileMap(TileMap tileMap) {
@@ -536,6 +557,7 @@ public abstract class GameEngine extends PApplet {
 
     /**
      * Gets the TileMap which is drawn by the View.
+     *
      * @return TileMap
      */
     public TileMap getTileMap() {
@@ -544,6 +566,7 @@ public abstract class GameEngine extends PApplet {
 
     /**
      * Creates a new PGraphics (canvas) object which can only made by the PApplet. (this method is used by the GameEngine)
+     *
      * @param width
      * @param height
      * @return PGraphics
@@ -559,7 +582,7 @@ public abstract class GameEngine extends PApplet {
 
         private static int topTileSide = 0;
         private static int rightTileSide = 1;
-        private static int bottomTileSide =2;
+        private static int bottomTileSide = 2;
         private static int leftTileSide = 3;
         private static int insideTile = 4;
 
@@ -569,6 +592,7 @@ public abstract class GameEngine extends PApplet {
 
         /**
          * Method that checks if a GameObject has a collision with other GameObjects.
+         *
          * @param gameObject
          * @param allGameObjects
          * @return Vector<GameObject>
@@ -576,15 +600,14 @@ public abstract class GameEngine extends PApplet {
         private static Vector<GameObject> calculateGameObjectCollisions(GameObject gameObject, Vector<GameObject> allGameObjects) {
             Vector<GameObject> collidedObjects = new Vector<>();
 
-            Rectangle gameObjectRectangle = new Rectangle((int)gameObject.getX(), (int)gameObject.getY(),
-                                                          (int)gameObject.getWidth(), (int)gameObject.getHeight());
+            Rectangle gameObjectRectangle = new Rectangle((int) gameObject.getX(), (int) gameObject.getY(),
+                    (int) gameObject.getWidth(), (int) gameObject.getHeight());
             Rectangle otherGameObjectRectangle;
 
             for (int i = 0; i < allGameObjects.size(); i++) {
-                if (!allGameObjects.get(i).equals(gameObject))
-                {
-                    otherGameObjectRectangle = new Rectangle((int)allGameObjects.get(i).getX(), (int)allGameObjects.get(i).getY(),
-                                                             (int)allGameObjects.get(i).getWidth(), (int)allGameObjects.get(i).getHeight());
+                if (!allGameObjects.get(i).equals(gameObject)) {
+                    otherGameObjectRectangle = new Rectangle((int) allGameObjects.get(i).getX(), (int) allGameObjects.get(i).getY(),
+                            (int) allGameObjects.get(i).getWidth(), (int) allGameObjects.get(i).getHeight());
                     collidedObjects.addAll(checkCollisionBetweenObjects(gameObject, allGameObjects.get(i), gameObjectRectangle, otherGameObjectRectangle));
                 }
             }
@@ -598,22 +621,22 @@ public abstract class GameEngine extends PApplet {
 
         /**
          * Method that checks if a GameObject has a collision with Tiles.
+         *
          * @param gameObject, allGameObjects
          * @return Vector<GameObject>
          */
         private static Vector<CollidedTile> calculateTileCollision(GameObject gameObject, TileMap tileMap) {
             Vector<CollidedTile> collidedTiles = new Vector<>();
 
-            Rectangle gameObjectRectangle = new Rectangle((int)gameObject.getX(), (int)gameObject.getY(),
-                                                          (int)gameObject.getWidth(), (int)gameObject.getHeight());
+            Rectangle gameObjectRectangle = new Rectangle((int) gameObject.getX(), (int) gameObject.getY(),
+                    (int) gameObject.getWidth(), (int) gameObject.getHeight());
             Rectangle tileRectangle;
 
             for (int i = 0; i < tileMap.getTileMap().length; i++) {
                 for (int j = 0; j < tileMap.getTileMap()[i].length; j++) {
-                    if (!tilemapIndexHasEmptyTile(tileMap, i, j))
-                    {
+                    if (!tilemapIndexHasEmptyTile(tileMap, i, j)) {
                         tileRectangle = new Rectangle(j * tileMap.getTileSize(), i * tileMap.getTileSize(),
-                                                      tileMap.getTileSize(), tileMap.getTileSize());
+                                tileMap.getTileSize(), tileMap.getTileSize());
                         collidedTiles.addAll(checkCollisionBetweenTileAndObject(gameObject, tileMap.getTileOnIndex(j, i), tileRectangle, gameObjectRectangle));
                     }
                 }
@@ -623,11 +646,12 @@ public abstract class GameEngine extends PApplet {
                 return collidedTiles;
             }
 
-            return new Vector<CollidedTile>();
+            return new Vector<>();
         }
 
         /**
          * Method that checks if an index of the TileMap has an empty Tile.
+         *
          * @param tileMap
          * @param i
          * @param j
@@ -639,15 +663,17 @@ public abstract class GameEngine extends PApplet {
 
         /**
          * Method that checks if a GameObject is moving.
+         *
          * @param gameObject
          * @return boolean
          */
         private static boolean objectIsMoving(GameObject gameObject) {
-            return (int)gameObject.getxSpeed() != 0 || (int)gameObject.getySpeed() != 0;
+            return (int) gameObject.getxSpeed() != 0 || (int) gameObject.getySpeed() != 0;
         }
 
         /**
          * Method that calculates a position between two objects.
+         *
          * @param x1
          * @param x2
          * @param t
@@ -659,13 +685,14 @@ public abstract class GameEngine extends PApplet {
 
         /**
          * This method returns an integer between 0 and 3 to define which side of the Tile has been hit by the GameObject.
+         *
          * @param gameObject
          * @param tile
          * @return int
          */
-        private static int getCollidedTileSide(Rectangle gameObject, Rectangle tile) {
-            int centerTileX = (int)tile.getX() + ((int)tile.getWidth()/2);
-            int centerTileY = (int)tile.getY() + ((int)tile.getHeight()/2);
+        private static CollisionSide getCollidedTileSide(Rectangle gameObject, Rectangle tile) {
+            int centerTileX = (int) tile.getX() + ((int) tile.getWidth() / 2);
+            int centerTileY = (int) tile.getY() + ((int) tile.getHeight() / 2);
 
             int checkpointObjectX = getGameObjectXClosestToTileCenterX(gameObject, tile);
             int checkpointObjectY = getGameObjectYClosestToTileCenterY(gameObject, tile);
@@ -677,74 +704,93 @@ public abstract class GameEngine extends PApplet {
 
         /**
          * This method returns an integer between 0 and 3 to define which side of the Tile has been hit by the GameObject.
+         *
          * @param gameObject
          * @param centerTileX
          * @param centerTileY
          * @param angleGameObjectToTile
          * @return int
          */
-        private static int getCollidedTileSide(Rectangle gameObject, int centerTileX, int centerTileY, float angleGameObjectToTile) {
-            if (gameObject.contains(centerTileX, centerTileY))
-                return insideTile;
-            else
-                return calculateCollidedTileSide(Math.round(angleGameObjectToTile));
+        private static CollisionSide getCollidedTileSide(Rectangle gameObject, int centerTileX, int centerTileY, float angleGameObjectToTile) {
+            CollisionSide side = CollisionSide.INSIDE;
+
+            if (!gameObject.contains(centerTileX, centerTileY)) {
+                switch (calculateCollidedTileSide(Math.round(angleGameObjectToTile))) {
+                    case 0:
+                        side = CollisionSide.TOP;
+                        break;
+                    case 1:
+                        side = CollisionSide.RIGHT;
+                        break;
+                    case 2:
+                        side = CollisionSide.BOTTOM;
+                        break;
+                    case 3:
+                        side = CollisionSide.LEFT;
+                        break;
+                }
+            }
+            return side;
         }
 
         /**
          * This method returns the X position of an object that is closest to the centerX point of a Tile.
+         *
          * @param gameObject
          * @param tile
          * @return int
          */
         private static int getGameObjectXClosestToTileCenterX(Rectangle gameObject, Rectangle tile) {
-            int centerTileX = (int)tile.getX() + ((int)tile.getWidth()/2);
+            int centerTileX = (int) tile.getX() + ((int) tile.getWidth() / 2);
 
             if (centerTileX >= gameObject.getX() + gameObject.getWidth())
-                return (int)gameObject.getX() + ((int)gameObject.getWidth());
-            else if ((centerTileX < gameObject.getX() + gameObject.getWidth()) && (gameObject.getX() <= centerTileX) )
+                return (int) gameObject.getX() + ((int) gameObject.getWidth());
+            else if ((centerTileX < gameObject.getX() + gameObject.getWidth()) && (gameObject.getX() <= centerTileX))
                 return centerTileX;
             else if (gameObject.getX() > centerTileX)
-                return (int)gameObject.getX();
+                return (int) gameObject.getX();
 
-            return (int)gameObject.getX() + ((int)gameObject.getWidth()/2);
+            return (int) gameObject.getX() + ((int) gameObject.getWidth() / 2);
         }
 
         /**
          * This method returns the Y position of an object that is closest to the centerY point of a Tile.
+         *
          * @param gameObject
          * @param tile
          * @return int
          */
         private static int getGameObjectYClosestToTileCenterY(Rectangle gameObject, Rectangle tile) {
-            int centerTileY = (int)tile.getY() + ((int)tile.getHeight()/2);
+            int centerTileY = (int) tile.getY() + ((int) tile.getHeight() / 2);
 
             if (centerTileY >= gameObject.getY() + gameObject.getHeight())
-                return (int)gameObject.getY() + ((int)gameObject.getHeight());
-            else if ((centerTileY < gameObject.getY() + gameObject.getHeight()) && (gameObject.getY() <= centerTileY) )
+                return (int) gameObject.getY() + ((int) gameObject.getHeight());
+            else if ((centerTileY < gameObject.getY() + gameObject.getHeight()) && (gameObject.getY() <= centerTileY))
                 return centerTileY;
             else if (gameObject.getY() > centerTileY)
-                return (int)gameObject.getY();
+                return (int) gameObject.getY();
 
-            return (int)gameObject.getY() + ((int)gameObject.getHeight()/2);
+            return (int) gameObject.getY() + ((int) gameObject.getHeight() / 2);
         }
 
         /**
          * This method calculates which side of a Tile is hit, based on angle between GameObject and Tile.
+         *
          * @param angleGameObjectToTile
          * @return int
          */
         private static int calculateCollidedTileSide(int angleGameObjectToTile) {
 
-            if(angleGameObjectToTile >= 136 && angleGameObjectToTile <= 225)
+            if (angleGameObjectToTile >= 136 && angleGameObjectToTile <= 225)
                 return topTileSide;
 
-            else if(angleGameObjectToTile >= 226 && angleGameObjectToTile <= 315)
+            else if (angleGameObjectToTile >= 226 && angleGameObjectToTile <= 315)
                 return rightTileSide;
 
             else if ((angleGameObjectToTile >= 316 && angleGameObjectToTile <= 360) || angleGameObjectToTile >= 0 && angleGameObjectToTile <= 45)
                 return bottomTileSide;
 
-            else if(angleGameObjectToTile >= 46 && angleGameObjectToTile <= 135)
+            else if (angleGameObjectToTile >= 46 && angleGameObjectToTile <= 135)
                 return leftTileSide;
 
             else
@@ -753,6 +799,7 @@ public abstract class GameEngine extends PApplet {
 
         /**
          * This method returns the angle between two x and y coordinates.
+         *
          * @param point1X
          * @param point1Y
          * @param point2X
@@ -763,14 +810,15 @@ public abstract class GameEngine extends PApplet {
             float dx = point2X - point1X;
             float dy = point2Y - point1Y;
 
-            if(dx >= 0 || dy >= 0)
-                return (float)Math.toDegrees(Math.atan2(dy, dx)) + 90;
+            if (dx >= 0 || dy >= 0)
+                return (float) Math.toDegrees(Math.atan2(dy, dx)) + 90;
             else
-                return (float)Math.toDegrees(Math.atan2(dy, dx)) + 450;
+                return (float) Math.toDegrees(Math.atan2(dy, dx)) + 450;
         }
 
         /**
          * This method checks if a GameObject has collided with a Tile, and returns this Tile.
+         *
          * @param gameObject
          * @param tile
          * @param collidingTile
@@ -792,12 +840,11 @@ public abstract class GameEngine extends PApplet {
                     if (collidingGameobject.intersects(collidingTile)) {
 
                         objects.add(new CollidedTile(tile, getCollidedTileSide(collidingGameobject, collidingTile)));
-                        int tileSide = getCollidedTileSide(collidingGameobject, collidingTile);
+                        CollisionSide tileSide = getCollidedTileSide(collidingGameobject, collidingTile);
                         collided = true;
                     }
                 }
-            }
-            else {
+            } else {
                 if (collidingGameobject.intersects(collidingTile))
                     objects.add(new CollidedTile(tile, getCollidedTileSide(collidingGameobject, collidingTile)));
             }
@@ -807,6 +854,7 @@ public abstract class GameEngine extends PApplet {
 
         /**
          * This method checks if a GameObject has collided with another GameObject and returns this GameObject.
+         *
          * @param gameObject
          * @param otherGameObject
          * @param otherGameObjectRectangle
@@ -816,11 +864,11 @@ public abstract class GameEngine extends PApplet {
         private static Vector checkCollisionBetweenObjects(GameObject gameObject, GameObject otherGameObject, Rectangle gameObjectRectangle, Rectangle otherGameObjectRectangle) {
             Vector objects = new Vector();
 
-            if(objectIsMoving(gameObject)) {
+            if (objectIsMoving(gameObject)) {
 
                 boolean collided = false;
 
-                for(int t = 0; t <= gameObject.getSpeed() && !collided; t++) {
+                for (int t = 0; t <= gameObject.getSpeed() && !collided; t++) {
                     double x = lerp(gameObject.getPrevX(), gameObject.getX(), t / gameObject.getSpeed());
                     double y = lerp(gameObject.getPrevY(), gameObject.getY(), t / gameObject.getSpeed());
                     gameObjectRectangle.setLocation((int) x, (int) y);
@@ -829,9 +877,7 @@ public abstract class GameEngine extends PApplet {
                         collided = true;
                     }
                 }
-            }
-            else
-            {
+            } else {
                 if (gameObjectRectangle.intersects(otherGameObjectRectangle))
                     objects.add(otherGameObject);
             }
@@ -842,13 +888,14 @@ public abstract class GameEngine extends PApplet {
 
     /**
      * Sets whether the FPSCounter has to be shown or not.
+     *
      * @param status
      */
     public void setFPSCounter(boolean status) {
         if (status && fpsCounter == null) {
             fpsCounter = new FPSCounter(0, 12);
             addDashboard(fpsCounter);
-        } else if (!status){
+        } else if (!status) {
             dashboards.remove(fpsCounter);
             fpsCounter = null;
         }
