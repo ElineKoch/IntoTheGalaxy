@@ -46,6 +46,13 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
+        <!-- CI -->
+        <dependency>
+            <groupId>org.eluder.coveralls</groupId>
+            <artifactId>coveralls-maven-plugin</artifactId>
+            <version>4.3.0</version>
+            <scope>test</scope>
+        </dependency>
         <!-- PROCESSING -->
         <dependency>
             <groupId>processing</groupId>
