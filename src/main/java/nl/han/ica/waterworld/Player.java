@@ -1,10 +1,10 @@
 package nl.han.ica.waterworld;
 
-import nl.han.ica.OOPDProcessingEngineHAN.Collision.CollidedTile;
-import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithTiles;
-import nl.han.ica.OOPDProcessingEngineHAN.Exceptions.TileNotFoundException;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.AnimatedSpriteObject;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
+import nl.han.ica.oopdprocessingenginehan.collision.CollidedTile;
+import nl.han.ica.oopdprocessingenginehan.collision.ICollidableWithTiles;
+import nl.han.ica.oopdprocessingenginehan.exceptions.TileNotFoundException;
+import nl.han.ica.oopdprocessingenginehan.objects.AnimatedSpriteObject;
+import nl.han.ica.oopdprocessingenginehan.objects.Sprite;
 import nl.han.ica.waterworld.tiles.BoardsTile;
 import processing.core.PConstants;
 import processing.core.PVector;

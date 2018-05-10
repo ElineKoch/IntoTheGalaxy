@@ -1,6 +1,6 @@
 package nl.han.ica.waterworld;
 
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
+import nl.han.ica.oopdprocessingenginehan.objects.GameObject;
 import processing.core.PGraphics;
 
 /**
