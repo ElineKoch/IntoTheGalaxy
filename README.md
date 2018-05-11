@@ -1,4 +1,4 @@
-# OOPD Processing Game Engine (OOPG) [![Build Status](https://travis-ci.org/HANICA/oopg.svg?branch=master)](https://travis-ci.org/HANICA/oopg)
+# OOPD Processing Game Engine (OOPG) [![Build Status](https://travis-ci.org/HANICA/oopg.svg?branch=master)](https://travis-ci.org/HANICA/oopg) [![Coverage Status](https://coveralls.io/repos/github/HANICA/oopg/badge.svg?branch=master)](https://coveralls.io/github/HANICA/oopg?branch=master)
 In deze repository staat de game-engine die studenten moeten gebruiken voor het beroepsproduct van OOPD (de game). De engine werd in 2014-2015 ontwikkeld door een aantal OOSE-studenten en wordt momenteel doorontwikkeld door docenten en studenten van ICA.
 
 ## Oorspronkelijke ontwikkelaars
