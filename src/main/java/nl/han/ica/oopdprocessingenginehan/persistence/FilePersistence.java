@@ -14,14 +14,14 @@ import java.io.OutputStreamWriter;
  * Class for user persistence. With this Class you can save Strings in a File to
  * your internal storage. Both real devices and emulators can use the internal
  * storage.
- *
+ * <p>
  * You can use the game persistance for example to save variables or,
  * highscores. You are allowed to use multiple game persistances, each
  * additional persistance saves an additional file on your system if the
  * filename name is different.
  */
 public class FilePersistence implements IPersistence {
-	
+
     private Logger logger = LogFactory.getLogger();
 
     private String filename;
@@ -30,8 +30,7 @@ public class FilePersistence implements IPersistence {
      * The constructor allows you to specify the filename the internal storage
      * will use.
      *
-     * @param filename
-     *            The name of the file that will be used for this persistance.
+     * @param filename The name of the file that will be used for this persistance
      */
     public FilePersistence(String filename) {
         this.filename = filename;
@@ -43,16 +42,16 @@ public class FilePersistence implements IPersistence {
      * and then appending your new data to the String.
      *
      * @param data The data that should be saved to the file, the data must be
-     *             one entire String.
+     *             one entire String
      */
     public void saveData(String data) {
-    	
+
         FileOutputStream fos;
         File file;
         try {
             file = new File("src/", filename);
             fos = new FileOutputStream(file);
-            if(!file.exists()){
+            if (!file.exists()) {
                 file.createNewFile();
             }
             OutputStreamWriter osw = new OutputStreamWriter(fos);
@@ -65,19 +64,18 @@ public class FilePersistence implements IPersistence {
     }
 
     /**
-     *
-     * @param data
-     * @param separator
+     * @param data      The data to be stored
+     * @param separator The separator being used
      */
     public void saveData(String[] data, String separator) {
-    	
+
         StringBuilder sb = new StringBuilder();
-        
+
         if (data != null) {
-        	
+
             checkSeparatorUsage(data[0], separator);
             sb.append(data[0]);
-            for (int i = 1; i < data.length; i++){
+            for (int i = 1; i < data.length; i++) {
                 checkSeparatorUsage(data[1], separator);
                 sb.append(separator + data[i]);
             }
@@ -86,7 +84,7 @@ public class FilePersistence implements IPersistence {
     }
 
     private void checkSeparatorUsage(String data, String separator) {
-    	
+
         if (data.contains(separator))
             throw new IllegalArgumentException("A value in the Array contains the separator");
     }
@@ -99,10 +97,10 @@ public class FilePersistence implements IPersistence {
      * @return String The data saved earlier.
      */
     public String loadDataString() {
-    	
+
         String content = "";
         File file = new File("src/", filename);
-        
+
         if (file.exists()) {
             int bufferSize = (int) file.length();
             char[] buffer = new char[bufferSize];
@@ -122,13 +120,12 @@ public class FilePersistence implements IPersistence {
     }
 
     /**
-     *
      * @param separator The specific String which is used to separate the String from the earlier specified file.
      * @return The generated Array made out of the String from the earlier specified file.
      */
     public String[] loadDataStringArray(String separator) {
         String dataString = loadDataString();
-        
+
         return dataString.split(separator);
     }
 
@@ -142,9 +139,10 @@ public class FilePersistence implements IPersistence {
 
     /**
      * This function checks if the earlier specified file exists.
+     *
      * @return Boolean with the result.
      */
-    public boolean fileExists(){
+    public boolean fileExists() {
         return new File("src/", filename).exists();
     }
 }

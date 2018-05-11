@@ -6,8 +6,10 @@ package nl.han.ica.oopdprocessingenginehan.alarm;
  */
 public interface IAlarmListener {
 
-	/**
-	 * This method will be triggered by the alarm when the timer has been expired.
-	 */
-	void triggerAlarm(String alarmName);
+    /**
+     * This method will be triggered by the alarm when the timer has been expired.
+     *
+     * @param alarmName The name of the alarm
+     */
+    void triggerAlarm(String alarmName);
 }

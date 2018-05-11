@@ -13,6 +13,7 @@
         <maven.compiler.version>3.7.0</maven.compiler.version>
         <java.version>1.8</java.version>
         <junit.version>4.12</junit.version>
+        <javadoc.version>3.0.0</javadoc.version>
         <mockito.version>1.10.19</mockito.version>
         <surefire.version>2.21.0</surefire.version>
         <maven-surefire-plugin>2.19.1</maven-surefire-plugin>
@@ -54,8 +55,15 @@
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>${coveralls.version}</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${javadoc.version}</version>
+                <configuration>
+                    <excludePackageNames>nl.han.ica.waterworld</excludePackageNames>
+                </configuration>
+            </plugin>
         </plugins>
-
     </build>
     <dependencies>
         <!-- TESTING -->

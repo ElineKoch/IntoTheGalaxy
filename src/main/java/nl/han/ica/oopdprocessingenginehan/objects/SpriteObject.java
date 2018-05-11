@@ -12,7 +12,7 @@ public abstract class SpriteObject extends GameObject {
 	
 	/**
 	 * Create a new SpriteObject with a Sprite object.
-	 * @param sprite
+	 * @param sprite	The sprite
 	 */
 	public SpriteObject(Sprite sprite) {
 		super();

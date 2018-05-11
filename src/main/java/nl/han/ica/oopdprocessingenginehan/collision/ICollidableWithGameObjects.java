@@ -13,7 +13,7 @@ public interface ICollidableWithGameObjects {
 	 * This method will be triggered when a GameObject has collided with other
 	 * GameObjects.
 	 * 
-	 * @param collidedGameObjects
+	 * @param collidedGameObjects The GameObjects with which a collision should be detected
 	 */
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects);
 }

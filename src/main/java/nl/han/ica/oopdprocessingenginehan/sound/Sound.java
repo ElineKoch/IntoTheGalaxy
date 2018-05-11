@@ -12,8 +12,9 @@ public class Sound {
 
     /**
      * Create a new sound object to play music files.
-     * @param engine
-     * @param soundFileLocation
+     *
+     * @param engine            The GameEngine
+     * @param soundFileLocation The location of the SoundFile
      */
     public Sound(GameEngine engine, String soundFileLocation) {
         audio = engine.soundLibrary.loadFile(soundFileLocation);
@@ -59,7 +60,7 @@ public class Sound {
     /**
      * Returns true if this is currently playing and has more than one loop left to play.
      *
-     * @return boolean
+     * @return boolean, true if looping
      */
     public boolean isLooping() {
         return audio.isLooping();
@@ -77,7 +78,7 @@ public class Sound {
     /**
      * Sets the position to milliseconds from the beginning.
      *
-     * @param millis
+     * @param millis position in milliseconds
      */
     public void cue(int millis) {
         audio.cue(millis);
@@ -86,7 +87,7 @@ public class Sound {
     /**
      * Skips millis from the current position.
      *
-     * @param millis
+     * @param millis skips in milliseconds
      */
     public void skip(int millis) {
         audio.skip(millis);
@@ -102,7 +103,7 @@ public class Sound {
     /**
      * Returns the number of loops left to do.
      *
-     * @return number of loops left.
+     * @return number of loops left
      */
     public int loopCount() {
         return audio.loopCount();

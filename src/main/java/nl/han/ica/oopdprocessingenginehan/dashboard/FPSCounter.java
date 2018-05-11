@@ -14,8 +14,9 @@ public class FPSCounter extends Dashboard implements IAlarmListener {
 
     /**
      * Create a new FPSCounter object.
-     * @param x
-     * @param y
+     *
+     * @param x The x coordinate of the fps counter
+     * @param y The y coordinate of the fps counter
      */
     public FPSCounter(float x, float y) {
         super(x, y, 0, 0);
@@ -24,6 +25,8 @@ public class FPSCounter extends Dashboard implements IAlarmListener {
 
     /**
      * Draws the FPS on the given canvas.
+     *
+     * @param g Tha canvas on which the fpsCounter should be drawn
      */
     @Override
     public void draw(PGraphics g) {
@@ -37,6 +40,8 @@ public class FPSCounter extends Dashboard implements IAlarmListener {
 
     /**
      * Executed by the alarm when the timer has expired.
+     *
+     * @param alarmName The name of the Alarm
      */
     @Override
     public void triggerAlarm(String alarmName) {
@@ -48,8 +53,7 @@ public class FPSCounter extends Dashboard implements IAlarmListener {
     /**
      * Starts a new alarm.
      */
-    private void startTimer()
-    {
+    private void startTimer() {
         Alarm alarm = new Alarm("FPSCounter", 1);
         alarm.addTarget(this);
         alarm.start();

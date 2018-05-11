@@ -24,7 +24,7 @@ import java.util.Vector;
 /**
  * GameEngine is the core of the game. Extending this class is required to make use of the GameEngine.
  * <p>
- * This engine is created by: Bram Heijmink, Jeffrey Haen, Joost Elshof, Kenny Ligthart, Mark Vaesen & Nico Smolders.
+ * This engine is created by: Bram Heijmink, Jeffrey Haen, Joost Elshof, Kenny Ligthart, Mark Vaesen and Nico Smolders.
  */
 public abstract class GameEngine extends PApplet {
 
@@ -92,7 +92,7 @@ public abstract class GameEngine extends PApplet {
     /**
      * Sets the view which will be drawn by the GameEngine.
      *
-     * @param view
+     * @param view The view
      */
     public void setView(View view) {
         this.view = view;
@@ -101,7 +101,7 @@ public abstract class GameEngine extends PApplet {
     /**
      * Gets the view which is drawn by the GameEngine.
      *
-     * @return
+     * @return The view
      */
     public View getView() {
         return view;
@@ -120,7 +120,7 @@ public abstract class GameEngine extends PApplet {
     /**
      * Add a dashboard to the GameEngine.
      *
-     * @param dashboard
+     * @param dashboard The dashboard that should be added
      */
     public void addDashboard(Dashboard dashboard) {
         dashboards.add(dashboard);
@@ -129,9 +129,9 @@ public abstract class GameEngine extends PApplet {
     /**
      * Add a GameObject to the GameEngine.
      *
-     * @param gameObject
-     * @param x
-     * @param y
+     * @param gameObject The gameObject that should be added
+     * @param x          The x-coordinate on which the gameobject should be added
+     * @param y          The y-coordinate on which the gameobject should be added
      */
     public void addGameObject(GameObject gameObject, float x, float y) {
         addGameObject(gameObject);
@@ -143,9 +143,9 @@ public abstract class GameEngine extends PApplet {
     /**
      * Add a dashboard to te GameEngine.
      *
-     * @param dashboard
-     * @param x
-     * @param y
+     * @param dashboard The dashboard that should be added
+     * @param x         The x-coordinate on which the dashboard should be added
+     * @param y         The y-coordinate on which the dashboard should be added
      */
     public void addDashboard(Dashboard dashboard, float x, float y) {
         addDashboard(dashboard);
@@ -157,10 +157,10 @@ public abstract class GameEngine extends PApplet {
     /**
      * Add a GameObject to the GameEngine.
      *
-     * @param gameObject
-     * @param x
-     * @param y
-     * @param layerposition
+     * @param gameObject    The gameObject that should be added
+     * @param x             The x-coordinate on which the gameobject should be added
+     * @param y             The y-coordinate on which the gameobject should be added
+     * @param layerposition The layerposition on which the gameobject should be added
      */
     public void addGameObject(GameObject gameObject, float x, float y, float layerposition) {
         addGameObject(gameObject);
@@ -173,10 +173,10 @@ public abstract class GameEngine extends PApplet {
     /**
      * Add a dashboard to the GameEngine.
      *
-     * @param dashboard
-     * @param x
-     * @param y
-     * @param layerposition
+     * @param dashboard     The dashboard that should be added
+     * @param x             The x-coordinate on which the dashboard should be added
+     * @param y             The y-coordinate on which the dashboard should be added
+     * @param layerposition The layerposition on which the dashboard should be added
      */
     public void addDashboard(Dashboard dashboard, float x, float y, float layerposition) {
         addDashboard(dashboard);
@@ -189,8 +189,8 @@ public abstract class GameEngine extends PApplet {
     /**
      * Add a GameObject to the GameEngine.
      *
-     * @param gameObject
-     * @param layerposition
+     * @param gameObject    The gameObject that should be added
+     * @param layerposition The layerposition on which the gameobject should be added
      */
     public void addGameObject(GameObject gameObject, float layerposition) {
         addGameObject(gameObject);
@@ -201,8 +201,8 @@ public abstract class GameEngine extends PApplet {
     /**
      * Add a dashboard to the GameEngine.
      *
-     * @param dashboard
-     * @param layerposition
+     * @param dashboard     The dashboard that should be added
+     * @param layerposition The layerposition on which the dashboard should be added
      */
     public void addDashboard(Dashboard dashboard, float layerposition) {
         addDashboard(dashboard);
@@ -213,7 +213,7 @@ public abstract class GameEngine extends PApplet {
     /**
      * Get a list of all the GameObjects inside the GameEngine.
      *
-     * @return Vector<GameObject>
+     * @return All GAmeObjects
      */
     public Vector<GameObject> getGameObjectItems() {
         return gameObjects;
@@ -222,7 +222,7 @@ public abstract class GameEngine extends PApplet {
     /**
      * Get a list of all the Dashboards inside the GameEngine.
      *
-     * @return Vector<dashboard>
+     * @return All Dashboards
      */
     public Vector<Dashboard> getDashboards() {
         return dashboards;
@@ -231,7 +231,7 @@ public abstract class GameEngine extends PApplet {
     /**
      * Delete a GameObject from the GameEngine.
      *
-     * @param gameObject
+     * @param gameObject The gameobject that hould be deleted
      */
     public void deleteGameObject(GameObject gameObject) {
         gameObjects.remove(gameObject);
@@ -240,7 +240,7 @@ public abstract class GameEngine extends PApplet {
     /**
      * Delete a dashboard from the GameEngine.
      *
-     * @param dashboard
+     * @param dashboard The dashboard that should be deleted
      */
     public void deleteDashboard(Dashboard dashboard) {
         dashboards.remove(dashboard);
@@ -265,8 +265,8 @@ public abstract class GameEngine extends PApplet {
      * <p>
      * Example paramater: Player.class
      *
-     * @param type
-     * @param <T>
+     * @param type The type of the gameobjects
+     * @param <T>  Generic type, should extend GameObject
      */
     public <T extends GameObject> void deleteAllGameObjectsOfType(Class<T> type) {
         gameObjects.removeIf(p -> type.equals(p.getClass()));
@@ -487,8 +487,8 @@ public abstract class GameEngine extends PApplet {
     /**
      * Sets the amount of updates per second for the GameThread.
      *
-     * @param updatesPerSecond
-     * @throws Exception
+     * @param updatesPerSecond The number of udates per second
+     * @throws IllegalArgumentException if the updatesPerSecond is smaller than 1
      */
     public void setGameSpeed(int updatesPerSecond) throws IllegalArgumentException {
 
@@ -502,8 +502,8 @@ public abstract class GameEngine extends PApplet {
      * Gets and calculates the relative mouse position with the location of world (TileMap).
      * A negative value means the mouse position is detected outside the world map.
      *
-     * @param x
-     * @param y
+     * @param x The x coordinate
+     * @param y The y coordinate
      * @return PVector
      */
     public PVector calculateRelativeMouseLocation(int x, int y) {
@@ -549,7 +549,7 @@ public abstract class GameEngine extends PApplet {
     /**
      * Sets the TileMap which will be drawn by the view.
      *
-     * @param tileMap
+     * @param tileMap The tilemap to be set
      */
     public void setTileMap(TileMap tileMap) {
         this.tileMap = tileMap;
@@ -558,7 +558,7 @@ public abstract class GameEngine extends PApplet {
     /**
      * Gets the TileMap which is drawn by the view.
      *
-     * @return TileMap
+     * @return TileMap  The tilemap
      */
     public TileMap getTileMap() {
         return tileMap;
@@ -567,17 +567,14 @@ public abstract class GameEngine extends PApplet {
     /**
      * Creates a new PGraphics (canvas) object which can only made by the PApplet. (this method is used by the GameEngine)
      *
-     * @param width
-     * @param height
+     * @param width  The width of the PGraphics
+     * @param height The height of the PGraphics
      * @return PGraphics
      */
     public static PGraphics createPGraphics(int width, int height) {
         return engine.createGraphics(width, height);
     }
 
-    /**
-     * The CollidingHelper can calculate collision detection with GameObjects and Tiles.
-     */
     private static class CollidingHelper {
 
         private static int topTileSide = 0;
@@ -590,13 +587,6 @@ public abstract class GameEngine extends PApplet {
 
         }
 
-        /**
-         * Method that checks if a GameObject has a collision with other GameObjects.
-         *
-         * @param gameObject
-         * @param allGameObjects
-         * @return Vector<GameObject>
-         */
         private static Vector<GameObject> calculateGameObjectCollisions(GameObject gameObject, Vector<GameObject> allGameObjects) {
             Vector<GameObject> collidedObjects = new Vector<>();
 
@@ -619,12 +609,6 @@ public abstract class GameEngine extends PApplet {
             return new Vector<GameObject>();
         }
 
-        /**
-         * Method that checks if a GameObject has a collision with Tiles.
-         *
-         * @param gameObject, allGameObjects
-         * @return Vector<GameObject>
-         */
         private static Vector<CollidedTile> calculateTileCollision(GameObject gameObject, TileMap tileMap) {
             Vector<CollidedTile> collidedTiles = new Vector<>();
 
@@ -649,47 +633,19 @@ public abstract class GameEngine extends PApplet {
             return new Vector<>();
         }
 
-        /**
-         * Method that checks if an index of the TileMap has an empty tile.
-         *
-         * @param tileMap
-         * @param i
-         * @param j
-         * @return boolean
-         */
         private static boolean tilemapIndexHasEmptyTile(TileMap tileMap, int i, int j) {
             return (tileMap.findTileTypeIndex(tileMap.getTileOnIndex(j, i))) == -1;
         }
 
-        /**
-         * Method that checks if a GameObject is moving.
-         *
-         * @param gameObject
-         * @return boolean
-         */
         private static boolean objectIsMoving(GameObject gameObject) {
             return (int) gameObject.getxSpeed() != 0 || (int) gameObject.getySpeed() != 0;
         }
 
-        /**
-         * Method that calculates a position between two objects.
-         *
-         * @param x1
-         * @param x2
-         * @param t
-         * @return double
-         */
         private static double lerp(float x1, float x2, double t) {
             return x1 + (x2 - x1) * t;
         }
 
-        /**
-         * This method returns an integer between 0 and 3 to define which side of the tile has been hit by the GameObject.
-         *
-         * @param gameObject
-         * @param tile
-         * @return int
-         */
+
         private static CollisionSide getCollidedTileSide(Rectangle gameObject, Rectangle tile) {
             int centerTileX = (int) tile.getX() + ((int) tile.getWidth() / 2);
             int centerTileY = (int) tile.getY() + ((int) tile.getHeight() / 2);
@@ -702,15 +658,6 @@ public abstract class GameEngine extends PApplet {
             return getCollidedTileSide(gameObject, centerTileX, centerTileY, angleGameObjectToTile);
         }
 
-        /**
-         * This method returns an integer between 0 and 3 to define which side of the tile has been hit by the GameObject.
-         *
-         * @param gameObject
-         * @param centerTileX
-         * @param centerTileY
-         * @param angleGameObjectToTile
-         * @return int
-         */
         private static CollisionSide getCollidedTileSide(Rectangle gameObject, int centerTileX, int centerTileY, float angleGameObjectToTile) {
             CollisionSide side = CollisionSide.INSIDE;
 
@@ -733,13 +680,7 @@ public abstract class GameEngine extends PApplet {
             return side;
         }
 
-        /**
-         * This method returns the X position of an object that is closest to the centerX point of a tile.
-         *
-         * @param gameObject
-         * @param tile
-         * @return int
-         */
+
         private static int getGameObjectXClosestToTileCenterX(Rectangle gameObject, Rectangle tile) {
             int centerTileX = (int) tile.getX() + ((int) tile.getWidth() / 2);
 
@@ -753,13 +694,6 @@ public abstract class GameEngine extends PApplet {
             return (int) gameObject.getX() + ((int) gameObject.getWidth() / 2);
         }
 
-        /**
-         * This method returns the Y position of an object that is closest to the centerY point of a tile.
-         *
-         * @param gameObject
-         * @param tile
-         * @return int
-         */
         private static int getGameObjectYClosestToTileCenterY(Rectangle gameObject, Rectangle tile) {
             int centerTileY = (int) tile.getY() + ((int) tile.getHeight() / 2);
 
@@ -773,12 +707,6 @@ public abstract class GameEngine extends PApplet {
             return (int) gameObject.getY() + ((int) gameObject.getHeight() / 2);
         }
 
-        /**
-         * This method calculates which side of a tile is hit, based on angle between GameObject and tile.
-         *
-         * @param angleGameObjectToTile
-         * @return int
-         */
         private static int calculateCollidedTileSide(int angleGameObjectToTile) {
 
             if (angleGameObjectToTile >= 136 && angleGameObjectToTile <= 225)
@@ -797,15 +725,6 @@ public abstract class GameEngine extends PApplet {
                 return -1;
         }
 
-        /**
-         * This method returns the angle between two x and y coordinates.
-         *
-         * @param point1X
-         * @param point1Y
-         * @param point2X
-         * @param point2Y
-         * @return float
-         */
         private static float getAngleBetweenPoints(int point1X, int point1Y, int point2X, int point2Y) {
             float dx = point2X - point1X;
             float dy = point2Y - point1Y;
@@ -816,15 +735,6 @@ public abstract class GameEngine extends PApplet {
                 return (float) Math.toDegrees(Math.atan2(dy, dx)) + 450;
         }
 
-        /**
-         * This method checks if a GameObject has collided with a tile, and returns this tile.
-         *
-         * @param gameObject
-         * @param tile
-         * @param collidingTile
-         * @param collidingGameobject
-         * @return Vector
-         */
         private static Vector checkCollisionBetweenTileAndObject(GameObject gameObject, Tile tile, Rectangle collidingTile, Rectangle collidingGameobject) {
             Vector objects = new Vector();
 
@@ -852,15 +762,6 @@ public abstract class GameEngine extends PApplet {
             return objects;
         }
 
-        /**
-         * This method checks if a GameObject has collided with another GameObject and returns this GameObject.
-         *
-         * @param gameObject
-         * @param otherGameObject
-         * @param otherGameObjectRectangle
-         * @param gameObjectRectangle
-         * @return Vector
-         */
         private static Vector checkCollisionBetweenObjects(GameObject gameObject, GameObject otherGameObject, Rectangle gameObjectRectangle, Rectangle otherGameObjectRectangle) {
             Vector objects = new Vector();
 
@@ -889,7 +790,7 @@ public abstract class GameEngine extends PApplet {
     /**
      * Sets whether the FPSCounter has to be shown or not.
      *
-     * @param status
+     * @param status True if the FPSCounter should be shown
      */
     public void setFPSCounter(boolean status) {
         if (status && fpsCounter == null) {

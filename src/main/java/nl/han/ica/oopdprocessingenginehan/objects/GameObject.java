@@ -19,7 +19,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
     protected float prevX;
     protected float prevY;
 
-    private PVector velocity = new PVector(0,0);
+    private PVector velocity = new PVector(0, 0);
     private float speed;
     private float friction;
     private float direction;
@@ -28,10 +28,9 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     private boolean isVisible = true;
 
-    public GameObject()
-    {
+    public GameObject() {
     }
-    
+
     public GameObject(float x, float y, float width, float height) {
         this.x = x;
         this.y = y;
@@ -46,6 +45,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Implement this method to actually draw the GameObject.
+     *
      * @param g PGraphics object will be given by the GameEngine.
      */
     public abstract void draw(PGraphics g);
@@ -71,9 +71,8 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
     /**
      * Calculates the changes in speed due to friction.
      *
-     * @param speed
-     *            the current speed
-     * @return the new speed.
+     * @param speed The current speed
+     * @return the new speed
      */
     private float calculateFriction(float speed) {
         return (1 - friction) * speed;
@@ -81,9 +80,10 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * calculate speed based on x and y speed.
-     * @param xSpeed
-     * @param ySpeed
-     * @return speed
+     *
+     * @param xSpeed The x-component of the speed
+     * @param ySpeed The y-component of the speed
+     * @return The calculated speed from the x- and y-component
      */
     private float calculateSpeed(float xSpeed, float ySpeed) {
         velocity.x = xSpeed;
@@ -96,10 +96,8 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
      * Calculates the direction this object travels to based on the x speed and
      * the y speed.
      *
-     * @param xSpeed
-     *            the x speed.
-     * @param ySpeed
-     *            the y speed.
+     * @param xSpeed the x speed.
+     * @param ySpeed the y speed.
      * @return the direction in degrees.
      */
     public float calculateDirection(float xSpeed, float ySpeed) {
@@ -109,12 +107,12 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
     /**
      * Calculate new x and y speed based on the direction
      */
-    private void calculateMovement(){
+    private void calculateMovement() {
         //Calculate new X and Y speed
         double radianDirection = Math.toRadians(direction) - (0.5 * Math.PI);
 
-        float ySpeed = (float)Math.sin(radianDirection) * speed;
-        float xSpeed = (float)Math.cos(radianDirection) * speed;
+        float ySpeed = (float) Math.sin(radianDirection) * speed;
+        float xSpeed = (float) Math.cos(radianDirection) * speed;
 
         velocity.y = ySpeed;
         velocity.x = xSpeed;
@@ -122,10 +120,10 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Set the Xspeed of a MovableGameObject.
-     * @param xSpeed
+     *
+     * @param xSpeed The speed
      */
-    public void setxSpeed(float xSpeed)
-    {
+    public void setxSpeed(float xSpeed) {
         speed = calculateSpeed(xSpeed, velocity.y);
         direction = calculateDirection(xSpeed, velocity.y);
 
@@ -134,10 +132,10 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Set the Yspeed of a MovableGameObject..
-     * @param ySpeed
+     *
+     * @param ySpeed The speed
      */
-    public void setySpeed(float ySpeed)
-    {
+    public void setySpeed(float ySpeed) {
         speed = calculateSpeed(velocity.x, ySpeed);
         direction = calculateDirection(velocity.x, ySpeed);
 
@@ -146,48 +144,40 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Set the speed of a MovableGameObject.
-     * @param speed
+     *
+     * @param speed The speed
      */
-    public void setSpeed(float speed)
-    {
+    public void setSpeed(float speed) {
         this.speed = speed;
         calculateMovement();
     }
 
     /**
-     *
      * @return speed
      */
-    public float getSpeed()
-    {
+    public float getSpeed() {
         return speed;
     }
 
     /**
-     *
      * @return xSpeed
      */
-    public float getxSpeed()
-    {
+    public float getxSpeed() {
         return velocity.x;
     }
 
     /**
-     *
      * @return ySpeed
      */
-    public float getySpeed()
-    {
+    public float getySpeed() {
         return velocity.y;
     }
 
-    public void setGravity(float value)
-    {
+    public void setGravity(float value) {
         gravity = value;
     }
 
-    public float getGravity()
-    {
+    public float getGravity() {
         return gravity;
     }
 
@@ -195,8 +185,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
      * Sets the direction of this object in degrees
      * Direction 0 points up, directions go clockwise, so 90 is right, etc.
      *
-     * @param inputDirection
-     *            the direction in degrees.
+     * @param inputDirection the direction in degrees.
      */
     public void setDirection(float inputDirection) {
         //Make sure direction is between 0 and 360
@@ -223,10 +212,8 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
      * Sets both the direction and the speed of this object.
      * Direction 0 points up, directions go clockwise, so 90 is right, etc.
      *
-     * @param direction
-     *            the direction you want to set in the degrees
-     * @param speed
-     *            the speed you want to set.
+     * @param direction the direction you want to set in the degrees
+     * @param speed     the speed you want to set.
      */
     public void setDirectionSpeed(float direction, float speed) {
         this.speed = speed;
@@ -235,17 +222,15 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Sets the friction of this object, that is the amount of speed reduction.
-     * <br />
+     * <br>
      * The decrease in speed is measured as a fraction, if you want a 5% decrease
      * in speed per cycle of the game loop, use 0.05.
      *
-     * @param friction
-     * 			the fraction of decrease in speed per cycle of the game loop.
-     * 			Must be a number between 0 and 1
+     * @param friction the fraction of decrease in speed per cycle of the game loop.
+     *                 Must be a number between 0 and 1
      */
-    public void setFriction(float friction) throws IllegalArgumentException
-    {
-        if ( friction >= 0 && friction < 1 ) {
+    public void setFriction(float friction) throws IllegalArgumentException {
+        if (friction >= 0 && friction < 1) {
             this.friction = friction;
         } else {
             throw new IllegalArgumentException("Input value must be between 0 and 1");
@@ -263,6 +248,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Gets the x position of the GameObject.
+     *
      * @return x
      */
     public float getX() {
@@ -271,7 +257,8 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Sets the x position of the GameObject.
-     * @param value
+     *
+     * @param value The X position
      */
     public void setX(float value) {
         prevX = x;
@@ -280,6 +267,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Gets the y position of the GameObject.
+     *
      * @return y
      */
     public float getY() {
@@ -288,7 +276,8 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Sets the y position of the GameObject.
-     * @param value
+     *
+     * @param value The y position
      */
     public void setY(float value) {
         prevY = y;
@@ -297,6 +286,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Gets the width of the GameObject.
+     *
      * @return width
      */
     public float getWidth() {
@@ -305,7 +295,8 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Sets the width of the GameObject.
-     * @param value
+     *
+     * @param value The width
      */
     public void setWidth(int value) {
         this.width = value;
@@ -313,6 +304,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Gets the height of the GameObject.
+     *
      * @return height
      */
     public float getHeight() {
@@ -321,7 +313,8 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Sets the height of the GameObject.
-     * @param value
+     *
+     * @param value The height
      */
     public void setHeight(int value) {
         this.height = value;
@@ -329,6 +322,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Gets the z position of the GameObject.
+     *
      * @return z
      */
     public float getZ() {
@@ -337,7 +331,8 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Sets the z position of the GameObject.
-     * @param value
+     *
+     * @param value The Z value
      */
     public void setZ(float value) {
         this.z = value;
@@ -345,15 +340,17 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Returns whether the GameObject is visible or not.
+     *
      * @return isVisible
      */
     public boolean isVisible() {
         return isVisible;
     }
-    
+
     /**
      * Used to set or unset the visibility of the GameObject.
-     * @param isVisible
+     *
+     * @param isVisible True if visible, false otherwise
      */
     public void setVisible(boolean isVisible) {
         this.isVisible = isVisible;
@@ -361,6 +358,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Gets the center x position of the GameObject.
+     *
      * @return centerX
      */
     public float getCenterX() {
@@ -369,6 +367,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Gets the center y position of the GameObject.
+     *
      * @return centerY
      */
     public float getCenterY() {
@@ -377,20 +376,21 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Use this function to get the angle between you and another object. For
-	 * example: You can use this function to check if you're approaching another
-	 * object from the left or right.
-	 * The angle is calculated with the center x and center y of both objects.
+     * example: You can use this function to check if you're approaching another
+     * object from the left or right.
+     * The angle is calculated with the center x and center y of both objects.
+     *
      * @param object GameObject of which you would like to know whether its position lays from your left or from your right.
      * @return You'll be returned an angle between 0 and 360 degrees. 0 degrees means the object is right above you, 90 degrees means the object is at your right side, etc.
      */
-    public float getAngleFrom(GameObject object){
+    public float getAngleFrom(GameObject object) {
         float dx = object.getCenterX() - getCenterX();
         float dy = object.getCenterY() - getCenterY();
 
         return calculatedAngle(dx, dy);
     }
 
-    public float getAngleFrom(int pointX, int pointY){
+    public float getAngleFrom(int pointX, int pointY) {
         float dx = pointX - getCenterX();
         float dy = pointY - getCenterY();
 
@@ -398,10 +398,10 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
     }
 
     private float calculatedAngle(float dx, float dy) {
-        if(dx >= 0 || dy >= 0)
-            return (float)Math.toDegrees(Math.atan2(dy, dx)) + 90;
+        if (dx >= 0 || dy >= 0)
+            return (float) Math.toDegrees(Math.atan2(dy, dx)) + 90;
         else
-            return (float)Math.toDegrees(Math.atan2(dy, dx)) + 450;
+            return (float) Math.toDegrees(Math.atan2(dy, dx)) + 450;
     }
 
     /**
@@ -412,6 +412,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
      * used to calculate the shortest distance between both objects.
      * If two objects are in line (horizontally or vertically), the shortest distance between both objects is the offset in either x- or y- values of those corners.
      * If not in line, Pythagoras is used to calculate the distance between two objects (better said; between two corners).
+     *
      * @param object of which you would like to know the distance.
      * @return distance
      */
@@ -448,27 +449,18 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
         double distance = 0;
 
         // If any of other objects corners is inside the main object.
-        if(objectsIntersected(mainObjectTopLeftX, mainObjectTopRightX, mainObjectBottomRightX, mainObjectBottomLeftX,
+        if (objectsIntersected(mainObjectTopLeftX, mainObjectTopRightX, mainObjectBottomRightX, mainObjectBottomLeftX,
                 mainObjectTopLeftY, mainObjectTopRightY, mainObjectBottomRightY, mainObjectBottomLeftY,
                 otherObjectTopLeftX, otherObjectTopRightX, otherObjectBottomRightX, otherObjectBottomLeftX,
-                otherObjectTopLeftY, otherObjectTopRightY, otherObjectBottomLeftY, otherObjectBottomRightY))
-        {
+                otherObjectTopLeftY, otherObjectTopRightY, otherObjectBottomLeftY, otherObjectBottomRightY)) {
             distance = 0;
-        }
-
-        else if(otherObjectAtTopRightOfMainObject(angle)){
+        } else if (otherObjectAtTopRightOfMainObject(angle)) {
             distance = calculateDistanceTopRightAngle(mainObjectTopRightX, mainObjectTopRightY, otherObjectBottomLeftX, otherObjectBottomLeftY);
-        }
-
-        else if(otherObjectAtBottomRightOfMainObject(angle)){
+        } else if (otherObjectAtBottomRightOfMainObject(angle)) {
             distance = calculateDistanceBottomRightAngle(mainObjectBottomRightX, mainObjectBottomRightY, otherObjectTopLeftX, otherObjectTopLeftY);
-        }
-
-        else if(otherObjectAtBottomLeftOfMainObject(angle)){
+        } else if (otherObjectAtBottomLeftOfMainObject(angle)) {
             distance = calculateDistanceBottomLeftAngle(mainObjectBottomLeftX, mainObjectBottomLeftY, otherObjectTopRightX, otherObjectTopRightY);
-        }
-
-        else if(otherObjectAtTopLeftOfMainObject(angle)){
+        } else if (otherObjectAtTopLeftOfMainObject(angle)) {
             distance = calculateDistanceTopLeftAngle(mainObjectTopLeftX, mainObjectTopLeftY, otherObjectBottomRightX, otherObjectBottomRightY);
         }
         return distance;
@@ -493,19 +485,19 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
     private double calculateDistanceTopLeftAngle(float mainObjectTopLeftX, float mainObjectTopLeftY, float otherObjectBottomRightX, float otherObjectBottomRightY) {
 
         // If bottom right corner of other object is below the top left corner of the main object.
-        if(otherObjectBottomRightY > mainObjectTopLeftY){
+        if (otherObjectBottomRightY > mainObjectTopLeftY) {
             // Then the shortest distance between both objects is the offset between both x-values of those corners.
             return calculateDistance(mainObjectTopLeftX, otherObjectBottomRightX);
         }
 
         // If bottom right corner of other object is at right side of the top left corner of the main object.
-        else if(otherObjectBottomRightX > mainObjectTopLeftX){
+        else if (otherObjectBottomRightX > mainObjectTopLeftX) {
             // Then the shortest distance between both objects is the offset between both y-values of those corners.
             return calculateDistance(otherObjectBottomRightY, mainObjectTopLeftY);
         }
 
         // In every other case, pythagoras is needed to calculate the distance.
-        else{
+        else {
             float deltaX = calculateDistance(otherObjectBottomRightX, mainObjectTopLeftX);
             float deltaY = calculateDistance(otherObjectBottomRightY, mainObjectTopLeftY);
             return calculateDistanceWithPythagoras(deltaX, deltaY);
@@ -515,19 +507,19 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
     private double calculateDistanceBottomLeftAngle(float mainObjectBottomLeftX, float mainObjectBottomLeftY, float otherObjectTopRightX, float otherObjectTopRightY) {
 
         // If top right corner of other object is above left bottom corner of main object
-        if(otherObjectTopRightY <= mainObjectBottomLeftY){
+        if (otherObjectTopRightY <= mainObjectBottomLeftY) {
             // Then the shortest distance between both objects is the offset between both x-values of those corners.
             return calculateDistance(otherObjectTopRightX, mainObjectBottomLeftX);
         }
 
         // If top right corner of other object is at the right side of the bottom left corner of the main object.
-        else if(otherObjectTopRightX > mainObjectBottomLeftX){
+        else if (otherObjectTopRightX > mainObjectBottomLeftX) {
             // Then the shortest distance between both objects is the offset between both y-values of those corners.
             return calculateDistance(mainObjectBottomLeftY, otherObjectTopRightY);
         }
 
         // In every other case, pythagoras is needed to calculate the distance.
-        else{
+        else {
             float deltaX = calculateDistance(otherObjectTopRightX, mainObjectBottomLeftX);
             float deltaY = calculateDistance(otherObjectTopRightY, mainObjectBottomLeftY);
             return calculateDistanceWithPythagoras(deltaX, deltaY);
@@ -537,19 +529,19 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
     private double calculateDistanceBottomRightAngle(float mainObjectBottomRightX, float mainObjectBottomRightY, float otherObjectTopLeftX, float otherObjectTopLeftY) {
 
         // If top left corner of other object is above right bottom corner of main object
-        if(otherObjectTopLeftY <= mainObjectBottomRightY){
+        if (otherObjectTopLeftY <= mainObjectBottomRightY) {
             // Then the shortest distance between both objects is the offset between both x-values of those corners
             return calculateDistance(mainObjectBottomRightX, otherObjectTopLeftX);
         }
 
         // If top left corner of other object is at the left side of the bottom right corner of the main object.
-        else if(otherObjectTopLeftX < mainObjectBottomRightX){
+        else if (otherObjectTopLeftX < mainObjectBottomRightX) {
             // The the shortest distance between both objects is the offset between both y-values of those corners.
             return calculateDistance(mainObjectBottomRightY, otherObjectTopLeftY);
         }
 
         // In every other case, pythagoras is needed to calculate the distance.
-        else{
+        else {
             float deltaX = calculateDistance(mainObjectBottomRightX, otherObjectTopLeftX);
             float deltaY = calculateDistance(mainObjectBottomRightY, otherObjectTopLeftY);
             return calculateDistanceWithPythagoras(deltaX, deltaY);
@@ -559,19 +551,19 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
     private double calculateDistanceTopRightAngle(float mainObjectTopRightX, float mainObjectTopRightY, float otherObjectBottomLeftX, float otherObjectBottomLeftY) {
 
         // If bottom left corner of other object is below the top right corner of the main object
-        if(otherObjectBottomLeftY >= mainObjectTopRightY) {
+        if (otherObjectBottomLeftY >= mainObjectTopRightY) {
             // Then the shortest distance between both objects is the offset between both x-values of those corners.
             return calculateDistance(mainObjectTopRightX, otherObjectBottomLeftX);
         }
 
         // If bottom left corner of the other object is at the left side of the top right corner of the main object.
-        else if(otherObjectBottomLeftX <= mainObjectTopRightX){
+        else if (otherObjectBottomLeftX <= mainObjectTopRightX) {
             // Then the shortest distance between both objects is the offset between both y-values of those corners.
             return calculateDistance(otherObjectBottomLeftY, mainObjectTopRightY);
         }
 
         // In every other case, pythagoras is needed to calculate the distance.
-        else{
+        else {
             float deltaX = calculateDistance(mainObjectTopRightX, otherObjectBottomLeftX);
             float deltaY = calculateDistance(mainObjectTopRightY, otherObjectBottomLeftY);
             return calculateDistanceWithPythagoras(deltaX, deltaY);
@@ -591,17 +583,18 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
                                        float otherObjectTopLeftX, float otherObjectTopRightX, float otherObjectBottomRightX, float otherObjectBottomLeftX,
                                        float otherObjectTopLeftY, float otherObjectTopRightY, float otherObjectBottomLeftY, float otherObjectBottomRightY) {
         return
-        (otherObjectTopLeftX <= mainObjectTopRightX && otherObjectTopLeftX >= mainObjectTopLeftX && otherObjectTopLeftY <= mainObjectBottomLeftY && otherObjectTopLeftY >= mainObjectTopLeftY)
-        // or top right corner of other object is inside main object.
-        || (otherObjectTopRightX <= mainObjectTopRightX && otherObjectTopRightX >= mainObjectTopLeftX && otherObjectTopRightY <= mainObjectBottomRightY && otherObjectTopRightY >= mainObjectTopRightY)
-        // or bottom left corner of other object is inside main object.
-        || (otherObjectBottomLeftX <= mainObjectTopRightX && otherObjectBottomLeftX >= mainObjectTopLeftX && otherObjectBottomLeftY <= mainObjectBottomLeftY && otherObjectBottomLeftY >= mainObjectTopLeftY)
-        // or bottom right corner of other object is inside main object.
-        || (otherObjectBottomRightX <= mainObjectBottomRightX && otherObjectBottomRightX >= mainObjectBottomLeftX && otherObjectBottomRightY <= mainObjectBottomRightY && otherObjectBottomRightY >= mainObjectTopRightY);
+                (otherObjectTopLeftX <= mainObjectTopRightX && otherObjectTopLeftX >= mainObjectTopLeftX && otherObjectTopLeftY <= mainObjectBottomLeftY && otherObjectTopLeftY >= mainObjectTopLeftY)
+                        // or top right corner of other object is inside main object.
+                        || (otherObjectTopRightX <= mainObjectTopRightX && otherObjectTopRightX >= mainObjectTopLeftX && otherObjectTopRightY <= mainObjectBottomRightY && otherObjectTopRightY >= mainObjectTopRightY)
+                        // or bottom left corner of other object is inside main object.
+                        || (otherObjectBottomLeftX <= mainObjectTopRightX && otherObjectBottomLeftX >= mainObjectTopLeftX && otherObjectBottomLeftY <= mainObjectBottomLeftY && otherObjectBottomLeftY >= mainObjectTopLeftY)
+                        // or bottom right corner of other object is inside main object.
+                        || (otherObjectBottomRightX <= mainObjectBottomRightX && otherObjectBottomRightX >= mainObjectBottomLeftX && otherObjectBottomRightY <= mainObjectBottomRightY && otherObjectBottomRightY >= mainObjectTopRightY);
     }
 
     /**
      * Gets the previous movement Y position.
+     *
      * @return prevX
      */
     public float getPrevX() {
@@ -610,6 +603,7 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
     /**
      * Gets the previous movement Y position.
+     *
      * @return prevY
      */
     public float getPrevY() {
@@ -671,12 +665,12 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
     public void mouseDragged(int x, int y, int button) {
         // This method can be overridden by the user.
     }
-    
+
     /*
      * (non-Javadoc)
      * @see nl.han.ica.oopdprocessingenginehan.userinput.IMouseInput#mouseWheel(int)
      */
     public void mouseWheel(int direction) {
-    	//  This method can be overridden by the user.
+        //  This method can be overridden by the user.
     }
 }

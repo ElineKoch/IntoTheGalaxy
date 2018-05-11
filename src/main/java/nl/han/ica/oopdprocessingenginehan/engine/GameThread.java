@@ -51,7 +51,7 @@ public class GameThread implements Runnable {
     /**
      * Create a new GameThread for the GameEngine, updates every GameObject in the GameEngine on a different thread.
      *
-     * @param gameEngine
+     * @param gameEngine The GameEngine
      */
     public GameThread(GameEngine gameEngine) {
 
@@ -95,7 +95,7 @@ public class GameThread implements Runnable {
     /**
      * Sets the amount of updates per second.
      *
-     * @param updatesPerSecond
+     * @param updatesPerSecond The number of updates each second
      */
     public void setGameSpeed(int updatesPerSecond) {
 
@@ -106,7 +106,7 @@ public class GameThread implements Runnable {
     /**
      * Gets the amount of updates per second.
      *
-     * @return int
+     * @return The number of updates per second
      */
     public float getGameSpeed() {
 
