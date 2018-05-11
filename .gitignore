@@ -30,10 +30,6 @@ hs_err_pid*
 .project
 .settings
 
-# Maven
-/target
-*.class
-
 # Waterworld example log and persistence file
 src/main/java/nl/han/ica/waterworld/media/bubblesPopped.txt
 
