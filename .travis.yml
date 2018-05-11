@@ -10,3 +10,12 @@ before_script:
 after_success:
   - mvn clean test jacoco:report coveralls:report
   - mvn javadoc:javadoc
+
+deploy:
+    provider: pages
+    local-dir: site/apidocs
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: false
+    on:
+      branch: gh-pages
