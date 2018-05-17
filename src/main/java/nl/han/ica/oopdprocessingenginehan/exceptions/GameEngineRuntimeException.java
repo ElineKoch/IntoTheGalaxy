@@ -6,9 +6,6 @@ package nl.han.ica.oopdprocessingenginehan.exceptions;
  */
 public class GameEngineRuntimeException extends RuntimeException {
 	
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public GameEngineRuntimeException(String message) {

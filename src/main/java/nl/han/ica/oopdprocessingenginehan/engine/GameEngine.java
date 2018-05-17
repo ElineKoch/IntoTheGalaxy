@@ -64,8 +64,6 @@ public abstract class GameEngine extends PApplet {
      */
     private FPSCounter fpsCounter;
 
-	private boolean allowDuplicateGameObjectInsertion;
-
     private static GameEngine engine;
 
     /**
