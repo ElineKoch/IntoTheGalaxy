@@ -7,6 +7,7 @@ import nl.han.ica.oopdprocessingenginehan.collision.CollidedTile;
 import nl.han.ica.oopdprocessingenginehan.collision.ICollidableWithGameObjects;
 import nl.han.ica.oopdprocessingenginehan.collision.ICollidableWithTiles;
 import nl.han.ica.oopdprocessingenginehan.dashboard.FPSCounter;
+import nl.han.ica.oopdprocessingenginehan.exceptions.GameEngineRuntimeException;
 import nl.han.ica.oopdprocessingenginehan.objects.GameObject;
 import nl.han.ica.oopdprocessingenginehan.tile.Tile;
 import nl.han.ica.oopdprocessingenginehan.userinput.IKeyInput;
@@ -63,6 +64,8 @@ public abstract class GameEngine extends PApplet {
      */
     private FPSCounter fpsCounter;
 
+	private boolean allowDuplicateGameObjectInsertion;
+
     private static GameEngine engine;
 
     /**
@@ -70,7 +73,6 @@ public abstract class GameEngine extends PApplet {
      * PApplet.main(new String[]{"{YOUR.PACKAGENAME}.{YOUR.CLASSNAME}"});
      */
     public GameEngine() {
-
         GameEngine.engine = this;
     }
 
@@ -114,7 +116,11 @@ public abstract class GameEngine extends PApplet {
      *                   GameObject or MovableGameObject as it's parent.
      */
     public void addGameObject(GameObject gameObject) {
-        gameObjects.add(gameObject);
+        if (!gameObjects.contains(gameObject)) {
+        	gameObjects.add(gameObject);
+        } else {
+        	throw new GameEngineRuntimeException("The same object is added twice. This is not allowed for performance reasons. Please fix your code (do NOT catch this exception).");
+        }
     }
 
     /**

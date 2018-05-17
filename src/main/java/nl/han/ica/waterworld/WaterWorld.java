@@ -2,6 +2,7 @@ package nl.han.ica.waterworld;
 
 import nl.han.ica.oopdprocessingenginehan.dashboard.Dashboard;
 import nl.han.ica.oopdprocessingenginehan.engine.GameEngine;
+import nl.han.ica.oopdprocessingenginehan.exceptions.GameEngineRuntimeException;
 import nl.han.ica.oopdprocessingenginehan.objects.Sprite;
 import nl.han.ica.oopdprocessingenginehan.persistence.FilePersistence;
 import nl.han.ica.oopdprocessingenginehan.persistence.IPersistence;

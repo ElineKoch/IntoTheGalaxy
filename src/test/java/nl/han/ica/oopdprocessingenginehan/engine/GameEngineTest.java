@@ -86,6 +86,12 @@ public class GameEngineTest {
         assertNotSame(foo1, foo.elementAt(0));
     }
 
+    @Test(expected = RuntimeException.class)
+    public void testAddingSameObjectMultipleTimesThrowsException() {
+    	gameEngine.addGameObject(foo);
+    	gameEngine.addGameObject(foo);
+    }
+    
     @Test
     public void testDeletingGameOneObjectFromItems() throws Exception {
     	gameEngine.addGameObject(foo);
