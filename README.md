@@ -40,7 +40,7 @@ Blader in het in stap 2 geimporteerde project in Eclipse naar WaterWorld.java, r
 
 Maak nu een nieuwe folder voor je eigen game naast de folder voor Waterworld, met ook een klasse met een public static main en gebruik WaterWorld als voorbeeld. Ga niet blind copy-pasten, maar neem alleen over wat je nodig hebt, of bouw dit zelf stapsgewijs uit. Dit staat verder beschreven in de tutorials.
 
-<img width="500" alt="Voorbeeld game -> Run as Java Application" src="https://user-images.githubusercontent.com/3029472/40170030-c48446f6-59c7-11e8-9e74-d9e1a737bb3d.png">
+<img width="500" alt="Voorbeeld game, Run as Java Application" src="https://user-images.githubusercontent.com/3029472/40170444-c5e53f7c-59c8-11e8-82cc-cdc5c4495608.png">
 
 ### Werkt het niet?
 Check of je al bovenstaande stappen goed hebt doorlopen. Pas aan of begin evt. opnieuw. RTM! Vraag anders een collega student of de docent.
