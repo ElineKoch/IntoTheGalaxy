@@ -18,10 +18,4 @@ De eerste versie van huidige engine werd gebouwd door de volgende OOSE-studenten
 ## Hoe ga je lokaal aan de slag in Eclipse?
 Kijk [hier](up-and-running.md).
 
-## Downloaden van een voorbeeldspel
-Er is een voorbeeldspel beschikbaar genaamd Waterworld.
-
-## Hoe ga je lokaal aan de slag in Eclipse
-### 1. Clone deze repo naar een (logische) lokale folder.
-Handigst is om hier direct de naam te kiezen i.v.m. toekomstige upload in iSAS (kies dus een naam voor je spel; e.g. NIET `nieuw-spel`!)
 
