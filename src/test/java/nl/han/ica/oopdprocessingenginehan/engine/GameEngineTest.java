@@ -1,6 +1,7 @@
 package nl.han.ica.oopdprocessingenginehan.engine;
 
 import nl.han.ica.oopdprocessingenginehan.dashboard.Dashboard;
+import nl.han.ica.oopdprocessingenginehan.exceptions.GameEngineRuntimeException;
 import nl.han.ica.oopdprocessingenginehan.objects.GameObject;
 import nl.han.ica.oopdprocessingenginehan.tile.TileMap;
 import nl.han.ica.oopdprocessingenginehan.tile.TileType;
@@ -86,6 +87,12 @@ public class GameEngineTest {
         assertNotSame(foo1, foo.elementAt(0));
     }
 
+    @Test(expected = GameEngineRuntimeException.class)
+    public void testAddingSameObjectMultipleTimesThrowsException() {
+    	gameEngine.addGameObject(foo);
+    	gameEngine.addGameObject(foo);
+    }
+    
     @Test
     public void testDeletingGameOneObjectFromItems() throws Exception {
     	gameEngine.addGameObject(foo);
