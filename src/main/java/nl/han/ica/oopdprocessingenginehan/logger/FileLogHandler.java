@@ -21,7 +21,7 @@ public class FileLogHandler implements LogHandler {
     public FileLogHandler()
     {
         try {
-            file = new File("log.log");
+            file = new File("oopg.log");
             if(!file.exists()){
                 file.createNewFile();
             }
