@@ -21,7 +21,7 @@ public class FileLogHandler implements LogHandler {
     public FileLogHandler()
     {
         try {
-            file = new File("src/main/java/nl/han/ica/oopdprocessingenginehan/logger/Log.log");
+            file = new File("log.log");
             if(!file.exists()){
                 file.createNewFile();
             }
