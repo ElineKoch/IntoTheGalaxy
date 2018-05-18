@@ -131,7 +131,7 @@ public class DashboardTest {
         PGraphicsCreatorMock pGraphicsCreator = new PGraphicsCreatorMock();
         PGraphicsMock g = pGraphicsCreator.createPGraphics(100, 50);
 
-        FakeSprite fakeSprite = new FakeSprite("src/test/assets/swordfish.gif");
+        FakeSprite fakeSprite = new FakeSprite("src/test/resources/swordfish.gif");
         dashboard.setBackgroundImage(fakeSprite);
         dashboard.draw(g);
 
@@ -146,7 +146,7 @@ public class DashboardTest {
         PGraphicsCreatorMock pGraphicsCreator = new PGraphicsCreatorMock();
         PGraphicsMock g = pGraphicsCreator.createPGraphics(100, 50);
 
-        FakeSprite fakeSprite = new FakeSprite("src/test/assets/swordfish.png");
+        FakeSprite fakeSprite = new FakeSprite("src/test/resources/swordfish.png");
         dashboard.setBackgroundImage(fakeSprite);
         dashboard.draw(g);
 
@@ -161,7 +161,7 @@ public class DashboardTest {
         PGraphicsCreatorMock pGraphicsCreator = new PGraphicsCreatorMock();
         PGraphicsMock g = pGraphicsCreator.createPGraphics(100, 50);
 
-        FakeSprite fakeSprite = new FakeSprite("src/test/assets/background.jpg");
+        FakeSprite fakeSprite = new FakeSprite("src/test/resources/background.jpg");
         dashboard.setBackgroundImage(fakeSprite);
         dashboard.draw(g);
 
@@ -176,7 +176,7 @@ public class DashboardTest {
         PGraphicsCreatorMock pGraphicsCreator = new PGraphicsCreatorMock();
         PGraphicsMock g = pGraphicsCreator.createPGraphics(100, 50);
 
-        FakeSprite fakeSprite = new FakeSprite("src/test/assets/swordfish.png");
+        FakeSprite fakeSprite = new FakeSprite("src/test/resources/swordfish.png");
         FakeSpriteObject fakeSpriteObject = new FakeSpriteObject(fakeSprite);
         dashboard.addGameObject(fakeSpriteObject);
         dashboard.draw(g);
