@@ -10,7 +10,7 @@ before_script:
 after_success:
   - mvn test jacoco:report coveralls:report
   - mvn javadoc:javadoc
-  - mkdir target/site/release/;mv target/oopg-full.jar target/site/release/
+  - mkdir target/site/apidocs/nl/han/ica/oopg/2.0 ;mv target/oopg-full.jar target/site/apidocs/nl/han/ica/oopg/2.0/oopg-full-2.0.jar
 
 deploy:
     provider: pages
