@@ -11,7 +11,9 @@ after_success:
   - mvn test jacoco:report coveralls:report
   - mvn javadoc:javadoc
   - mvn install:install-file -Dfile=target/oopg-full.jar -DgroupId=nl.han.ica -DartifactId=oopg-full -Dversion=2.0.0 -Dpackaging=jar -DgeneratePom=true
-  - mkdir target/site/apidocs/nl/han/ica/oopg/2.0.0 ;mv target/oopg-full.jar target/site/apidocs/nl/han/ica/oopg/2.0.0/oopg-full-2.0.jar
+  - mkdir target/site/apidocs/nl/han/ica/oopg/2.0.0
+  - cp /home/travis/.m2/repository/nl/han/ica/oopg-full/2.0.0/oopg-full-2.0.0.pom target/site/apidocs/nl/han/ica/oopg/2.0.0/
+  - mv target/oopg-full.jar target/site/apidocs/nl/han/ica/oopg/2.0.0/oopg-full-2.0.0.jar
 
 deploy:
     provider: pages
