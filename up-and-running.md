@@ -5,7 +5,10 @@ Met deze simpele 1-2-3... ;)
 ### 1. Clone deze repo naar een (logische) lokale folder.
 Handigst is om hier direct de naam te kiezen i.v.m. toekomstige upload in iSAS (kies dus een naam voor je spel; e.g. NIET `nieuw-spel`!)
 
->git clone https://github.com/HANICA/oopg.git oopg-nieuw-spel
+```
+git clone https://github.com/HANICA/oopg.git oopg-nieuw-spel
+```
+
 NB Hiervoor moet je [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) gedowload en -installeerd hebben. Je kunt ook soortgelijk doen via een grafische git UI als GitHub for Windows of TreeSource. Of je kunt de zip zelf downloaden uit Github en uitpakken. Graag wel de root foldernaam aanpassen.
 <img width="500" alt="Clone repo of download zip" src="https://user-images.githubusercontent.com/3029472/40170033-c4ce6218-59c7-11e8-95a9-1d125786ea92.png">
 
