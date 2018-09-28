@@ -23,11 +23,11 @@ Kies menu `File` -> `Import...` en dan `Projects from folder or archive...`
 In de `Import project...` dialoog blader naar de folder aangemaakt bij stap 1
 <img width="700" alt="Project import dialoog" src="https://user-images.githubusercontent.com/3029472/40170031-c49d996c-59c7-11e8-922c-4e4c0ccf9815.png">
 
-### 3. Run de voorbeeld game
-Run nu de game om te checken of alles werkt.
-Blader in het in stap 2 geimporteerde project in Eclipse naar WaterWorld.java, rechtsklik en 
+### 3. Maak een nieuwe game
+In de wiki van deze repository staat een tutorial. Begin daar voor je eerste stappen in deze game engine. [Link naar tutorial](https://github.com/HANICA/oopg/wiki/01-Hello-Game-World)
 
-Maak nu een nieuwe folder voor je eigen game naast de folder voor Waterworld, met ook een klasse met een public static main en gebruik WaterWorld als voorbeeld. Ga niet blind copy-pasten, maar neem alleen over wat je nodig hebt, of bouw dit zelf stapsgewijs uit. Dit staat verder beschreven in de tutorials.
+### 4. Run / bekijk de voorbeeld game
+De voorbeeld game van OOPG heet: WaterWorld. Deze kan je hier vinden: [WaterWorld repository](https://github.com/HANICA/waterworld). Deze folder moet je op dezelfde manier clonen/downloaden en importeren in Eclipse zoals de OOPG. Eclipse gaat eerst zelf op zoek naar alle dependencies (andere software of libraries die nodig is om het spel te draaien). Dus het kan even duren, maar daarna kan je [WaterWorld.java](https://github.com/HANICA/waterworld/blob/master/src/main/java/nl/han/ica/oopd/waterworld/WaterWorld.java) draaien. Verdere uitleg staat ook op de waterworld repository pagina of in de tutorial. 
 
 <img width="700" alt="Voorbeeld game, Run as Java Application" src="https://user-images.githubusercontent.com/3029472/40170444-c5e53f7c-59c8-11e8-82cc-cdc5c4495608.png">
 
