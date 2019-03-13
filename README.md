@@ -3,6 +3,10 @@ In deze repository staat de game-engine die studenten moeten gebruiken voor het 
 
 ## API
 De volledige API van is online beschikbaar: [API OOPG](http://hanica.github.io/oopg/)
+
+## Hoe ga je lokaal aan de slag in Eclipse?
+Kijk [hier](up-and-running.md).
+
 ## Oorspronkelijke ontwikkelaars
 De engine werd gebaseerd op de oude [Android-engine](https://github.com/ddoa/game-api-android) die ontwikkeld werd onder begeleiding van (en door) Paul Bergervoet.
 
@@ -14,8 +18,5 @@ De eerste versie van huidige engine werd gebouwd door de volgende OOSE-studenten
 * Kenny Ligthart
 * Mark Vaesen
 * Nico Smolders
-
-## Hoe ga je lokaal aan de slag in Eclipse?
-Kijk [hier](up-and-running.md).
 
 
