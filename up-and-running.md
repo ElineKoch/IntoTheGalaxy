@@ -2,6 +2,9 @@
 > Hoe kun je lokaal aan de slag in Eclipse met je eigen game?
 Met deze simpele 1-2-3... ;)
 
+### 0. Download git
+Download en installeer **git** als je deze nog niet hebt. Stap 1 gaat uit van gebruik van git voor command line (cli). Deze cli is ook onderdeel van [Github Desktop](https://desktop.github.com/) desktop applicatie (voor Windows, linux of macOS). Of installeer enkel de cli via [git-scm.com](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+
 ### 1. Clone deze repo naar een (logische) lokale folder.
 Handigst is om hier direct de naam te kiezen i.v.m. toekomstige upload in iSAS (kies dus een naam voor je spel; e.g. NIET `nieuw-spel`!)
 
