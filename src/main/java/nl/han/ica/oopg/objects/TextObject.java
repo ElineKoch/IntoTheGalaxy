@@ -38,6 +38,7 @@ public class TextObject extends GameObject {
     public void draw(PGraphics g) {
 
         g.fill(this.r, this.g, this.b, this.alpha);
+	g.textAlign(g.LEFT, g.TOP);
         g.textSize(fontSize);
         g.text(text, x, y);
     }
