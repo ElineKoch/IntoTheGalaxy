@@ -15,7 +15,7 @@
         <javadoc.version>3.0.0</javadoc.version>
         <jacoco.version>0.8.1</jacoco.version>
         <coveralls.version>4.3.0</coveralls.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <mockito.version>1.10.19</mockito.version>
         <surefire.version>2.21.0</surefire.version>
         <maven-surefire-plugin>2.19.1</maven-surefire-plugin>
