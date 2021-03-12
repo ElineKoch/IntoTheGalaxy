@@ -3,7 +3,7 @@
 Met onderstaand stappenplan... ;)
 
 ### 1. Download de code uit deze repository naar een (logische) lokale folder.
-Je kunt alle code hier downloaden als .zip, zie onderstaand screenshot. Pak de zip uit op een handige plek en hernoem de folder direct met je eigen naam van je beoogde game (kies dus een naam voor je spel; dus `pong-battle` of `ghost-hunter` NIET `nieuw-spel`!). Dit is optie 3b in het screenshot. Als je zelf lokaal aan de slag wil met .git i.p.v. .zip downloaden kijk dan bij [optie 1b](#git) onderaan.
+Je kunt alle code [hier](https://github.com/HANICA/oopg/archive/master.zip) downloaden als .zip, zie onderstaand screenshot. Pak de zip uit op een handige plek en hernoem de folder direct met je eigen naam van je beoogde game (kies dus een naam voor je spel; dus `pong-battle` of `ghost-hunter` NIET `nieuw-spel`!). Dit is optie 3b in het screenshot. Als je zelf lokaal aan de slag wil met .git i.p.v. .zip downloaden kijk dan bij [optie 1b](#git) onderaan.
 
 ### 2. Importeer folder in (nieuw) Eclipse project
 Als je de code lokaal hebt staan moet je deze nog importeren in Eclipse zodat je er hier mee kunt werken.
