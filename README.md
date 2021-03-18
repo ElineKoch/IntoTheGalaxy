@@ -6,7 +6,7 @@ In deze repository staat de game-engine die studenten moeten gebruiken voor het 
 
 ## Links OOPG tutorials & API reference
 
-- In de [wiki van deze repository staan 8 **tutorials**]](https://github.com/HANICA/oopg/wiki)  over alle belangrijke functionaliteiten van deze game engine.
+- In de [wiki van deze repository staan 8 **tutorials**](https://github.com/HANICA/oopg/wiki)  over alle belangrijke functionaliteiten van deze game engine.
 - De [programmeurs API van de game engine](http://hanica.github.io/oopg/) is beschikbaar onder github.io.
 
 ## Oorspronkelijke ontwikkelaars
