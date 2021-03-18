@@ -4,9 +4,10 @@ In deze repository staat de game-engine die studenten moeten gebruiken voor het 
 ## Hoe ga je lokaal aan de slag met de game engine in Eclipse?
 Kijk [hier](up-and-running.md).
 
-## Tutorials & API
-In de [wiki](https://github.com/HANICA/oopg/wiki) staan tutorials over alle belangrijke functionaliteiten uit de game engine.
-De programmeurs API van deze game engine is hier beschikbaar: [API OOPG](http://hanica.github.io/oopg/).
+## Links OOPG tutorials & API reference
+
+- In de [wiki van deze repository staan 8 **tutorials**]](https://github.com/HANICA/oopg/wiki)  over alle belangrijke functionaliteiten van deze game engine.
+- De [programmeurs API van de game engine](http://hanica.github.io/oopg/) is beschikbaar onder github.io.
 
 ## Oorspronkelijke ontwikkelaars
 De engine werd gebaseerd op de oude [Android-engine](https://github.com/ddoa/game-api-android) die ontwikkeld werd onder begeleiding van (en door) Paul Bergervoet.
