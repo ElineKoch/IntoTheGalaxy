@@ -2,7 +2,7 @@
 In deze repository staat de game-engine die studenten moeten gebruiken voor het beroepsproduct van OOPD (de game). De engine werd in 2014-2015 ontwikkeld door een aantal OOSE-studenten en wordt momenteel doorontwikkeld door docenten en studenten van ICA.
 
 ## Hoe ga je lokaal aan de slag met de game engine in Eclipse?
-Kijk [hier](up-and-running.md).
+- Neem [deze 'Up and running' handleiding](up-and-running.md) door om zelf in Eclipse aan de slag te gaan met de game engine voor het maken van je beroepsproduct.
 
 ## Links OOPG tutorials & API reference
 
