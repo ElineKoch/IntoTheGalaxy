@@ -15,7 +15,7 @@ public class NieuwSpelNaam extends GameEngine {
 	public void setupGame() {
 		int worldWidth = 500;
 		int worldHeight = 500;
-		TextObject to = new TextObject("Hello, World!", 40);
+		TextObject to = new TextObject("Hello, World!!!", 40);
 		to.setForeColor(255, 255, 255, 255);
 		addGameObject(to, 100, 100);
 		View view = new View(worldWidth, worldHeight);
