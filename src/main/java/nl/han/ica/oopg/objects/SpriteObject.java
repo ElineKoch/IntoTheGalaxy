@@ -8,7 +8,7 @@ import processing.core.PImage;
  */
 public abstract class SpriteObject extends GameObject {
 
-	private Sprite sprite;
+	protected Sprite sprite;
 	
 	/**
 	 * Create a new SpriteObject with a Sprite object.
