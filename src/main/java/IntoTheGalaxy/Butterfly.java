@@ -5,13 +5,13 @@ import nl.han.ica.oopg.sound.Sound;
 
 public class Butterfly extends Alien {
 
-	public Butterfly(IntoTheGalaxy world, Sound explosionSound, int xPos, int yPos) {
-		super(world, explosionSound, xPos, yPos);
+	public Butterfly(IntoTheGalaxy world, float xPos, float yPos, Sound shootSound, Sound explosionSound) {
+		super(world, xPos, yPos, shootSound, explosionSound);
 		sprite = new Sprite(IntoTheGalaxy.MEDIA_URL.concat("Butterfly.png"));
 	}
 
 	@Override
 	public void doDiveAction() {
-		System.out.println("Butterfly");
+		setySpeed(1);
 	}
 }

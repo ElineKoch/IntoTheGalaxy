@@ -6,15 +6,12 @@ import nl.han.ica.oopg.objects.GameObject;
 import processing.core.PGraphics;
 
 public class AlienRocket extends Rocket {
-	
-	public AlienRocket(float x, float y, float width, float height) {
-		super(x, y, width, height);
+
+	public AlienRocket(IntoTheGalaxy world, float x, float y, float width, float height) {
+		super(world, x, y, width, height);
 		setDirection(180);
 		setSpeed(4);
 	}
-
-	
-	
 
 	@Override
 	public void draw(PGraphics g) {
@@ -26,7 +23,10 @@ public class AlienRocket extends Rocket {
 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-		// TODO Auto-generated method stub
-		
+		for (GameObject go : collidedGameObjects) {
+			if (go instanceof Fighter) {
+				world.deleteGameObject(this);
+			}
+		}
 	}
 }

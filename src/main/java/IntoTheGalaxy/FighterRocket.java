@@ -6,11 +6,11 @@ import nl.han.ica.oopg.objects.GameObject;
 import processing.core.PGraphics;
 
 public class FighterRocket extends Rocket {
-	
-	public FighterRocket(float x, float y, float width, float height) {
-		super(x, y, width, height);
+
+	public FighterRocket(IntoTheGalaxy world, float x, float y, float width, float height) {
+		super(world, x, y, width, height);
 		setDirection(0);
-		setSpeed(5);
+		setSpeed(10);
 	}
 
 	@Override
@@ -23,7 +23,10 @@ public class FighterRocket extends Rocket {
 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
-		// TODO Auto-generated method stub
-		
+		for (GameObject go : collidedGameObjects) {
+			if (go instanceof Alien) {
+				world.deleteGameObject(this);
+			}
+		}
 	}
 }
