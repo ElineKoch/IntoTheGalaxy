@@ -1,7 +1,6 @@
 package IntoTheGalaxy;
 
 import java.util.List;
-
 import nl.han.ica.oopg.objects.GameObject;
 import processing.core.PGraphics;
 

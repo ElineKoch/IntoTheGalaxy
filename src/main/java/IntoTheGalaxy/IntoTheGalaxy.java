@@ -1,18 +1,17 @@
 package IntoTheGalaxy;
 
 import java.util.*;
-
 import nl.han.ica.oopg.dashboard.Dashboard;
 import nl.han.ica.oopg.engine.GameEngine;
 import nl.han.ica.oopg.view.View;
-import nl.han.ica.oopg.objects.Sprite;
-import nl.han.ica.oopg.tile.TileType;
-import nl.han.ica.oopg.tile.TileMap;
 import nl.han.ica.oopg.sound.Sound;
 
 @SuppressWarnings("serial")
 public class IntoTheGalaxy extends GameEngine {
 	private int time;
+	private int numWaves;
+	private int currentWave;
+
 	private Sound fighterShootSound, fighterExplosionSound, alienShootSound, alienExplosionSound;
 
 	private Dashboard gameDashboard;
@@ -29,8 +28,8 @@ public class IntoTheGalaxy extends GameEngine {
 	public static String MEDIA_URL = "src/main/java/IntoTheGalaxy/media/";
 
 	public static void main(String[] args) {
-		IntoTheGalaxy tw = new IntoTheGalaxy();
-		tw.runSketch();
+		IntoTheGalaxy itg = new IntoTheGalaxy();
+		itg.runSketch();
 	}
 
 	@Override
@@ -38,6 +37,8 @@ public class IntoTheGalaxy extends GameEngine {
 		int worldWidth = 800;
 		int worldHeight = 600;
 		time = 0;
+		numWaves = 3;
+		currentWave = 1;
 
 		fighterShootSound = new Sound(this, MEDIA_URL.concat("fighterShoot.wav"));
 		fighterExplosionSound = new Sound(this, MEDIA_URL.concat("fighterExplosion.wav"));
@@ -57,7 +58,7 @@ public class IntoTheGalaxy extends GameEngine {
 	public void createObjects(int worldWidth, int worldHeight) {
 		createDashboard(worldWidth, worldHeight);
 		createFighter();
-		createAliens(worldHeight);
+		createAliens();
 	}
 
 	public void createDashboard(int worldWidth, int worldHeight) {
@@ -71,7 +72,7 @@ public class IntoTheGalaxy extends GameEngine {
 		addGameObject(fighter, xFighter, yFighter);
 	}
 
-	public void createAliens(int worldHeight) {
+	public void createAliens() {
 		alienList = new ArrayList<Alien>();
 
 		for (int i = 0; i < numAliens[0]; i++) {
@@ -104,6 +105,22 @@ public class IntoTheGalaxy extends GameEngine {
 	@Override
 	public void update() {
 		time++;
+		spawnNewAliens();
+		
+		endGame();
+	}
+	
+	public void spawnNewAliens() {
+		if (alienList.size() == 0) {
+			currentWave++;
+			createAliens();
+		}
+	}
+	
+	public void endGame() {
+		if (currentWave > numWaves) {
+			deleteAllGameOBjects();
+		}
 	}
 
 	public int getTime() {

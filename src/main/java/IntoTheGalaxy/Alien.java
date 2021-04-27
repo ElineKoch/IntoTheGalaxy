@@ -1,13 +1,10 @@
 package IntoTheGalaxy;
 
 import java.util.*;
-import TutorialWorld.tiles.FloorTile;
 import nl.han.ica.oopg.collision.*;
-import nl.han.ica.oopg.exceptions.TileNotFoundException;
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
-import processing.core.PVector;
 import nl.han.ica.oopg.sound.Sound;
 
 public abstract class Alien extends SpriteObject implements ICollidableWithGameObjects {
@@ -72,6 +69,8 @@ public abstract class Alien extends SpriteObject implements ICollidableWithGameO
 				decreaseLives();
 				if (numLives == 0) {
 					world.deleteGameObject(this);
+					world.alienList.remove(this);
+					System.out.println(world.alienList.size());
 				}
 			}
 		}

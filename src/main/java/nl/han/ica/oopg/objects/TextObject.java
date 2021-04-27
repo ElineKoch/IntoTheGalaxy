@@ -1,5 +1,6 @@
 package nl.han.ica.oopg.objects;
 
+import processing.core.PConstants;
 import processing.core.PGraphics;
 
 /**
@@ -38,7 +39,7 @@ public class TextObject extends GameObject {
     public void draw(PGraphics g) {
 
         g.fill(this.r, this.g, this.b, this.alpha);
-	g.textAlign(g.LEFT, g.TOP);
+        g.textAlign(PConstants.LEFT, PConstants.TOP);
         g.textSize(fontSize);
         g.text(text, x, y);
     }
