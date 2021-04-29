@@ -6,9 +6,14 @@ import processing.core.PGraphics;
 
 public class TextObject extends GameObject{
 	private String text;
+	private int fontSize;
+	int color;
 	
-	public TextObject() {
-		text = "";
+	public TextObject(String text, int fontSize, int color) {
+		super();
+		this.text = text;
+		this.fontSize = fontSize;
+		this.color = color;
 	}
 
 	public void setText(String text) {
@@ -21,9 +26,9 @@ public class TextObject extends GameObject{
 
 	@Override
 	public void draw(PGraphics g) {
-		g.fill(255);
+		g.fill(color);
 		g.textAlign(PConstants.CENTER, PConstants.CENTER);
-		g.textSize(16);
+		g.textSize(fontSize);
 		g.text(text, getX(), getY());
 	}
 
