@@ -12,7 +12,6 @@ public abstract class Alien extends SpriteObject implements ICollidableWithGameO
 	protected float speed = 1.5f;
 	protected float startX;
 	protected float startY;
-	protected boolean isDiving;
 	protected Sound alienShootSound, alienExplosionSound;
 	protected Random rand;
 	protected int numLives = 1;
@@ -25,7 +24,6 @@ public abstract class Alien extends SpriteObject implements ICollidableWithGameO
 		setY(yPos * 50);
 		setStartX(getX());
 		setStartY(getY());
-		isDiving = false;
 		rand = new Random();
 
 		alienShootSound = shootSound;
@@ -70,7 +68,7 @@ public abstract class Alien extends SpriteObject implements ICollidableWithGameO
 				if (numLives == 0) {
 					world.deleteGameObject(this);
 					world.alienList.remove(this);
-					System.out.println(world.alienList.size());
+					world.increaseScore(50);
 				}
 			}
 		}
@@ -94,7 +92,7 @@ public abstract class Alien extends SpriteObject implements ICollidableWithGameO
 	}
 
 	public void makeDive() {
-		if ((world.getTime() * 100 + 1000) % (rand.nextInt(80000) + 1) == 500) {
+		if ((world.getTime() * 100 + 1000) % (rand.nextInt(100000) + 1) == 500) {
 			doDiveAction();
 		}
 		if (getY() > world.getHeight() - getHeight()) {

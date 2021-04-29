@@ -13,14 +13,19 @@ public class Fighter extends SpriteObject implements ICollidableWithGameObjects 
 	private int shootDelay;
 	private int hitDelay;
 	private int numLives = 3;
+	private float startX, startY;
 
-	public Fighter(IntoTheGalaxy world, Sound shootSound, Sound explosionSound) {
+	public Fighter(IntoTheGalaxy world, float xPos, float yPos, Sound shootSound, Sound explosionSound) {
 		super(new Sprite(IntoTheGalaxy.MEDIA_URL.concat("Fighter.png")));
 		this.world = world;
 		fighterShootSound = shootSound;
 		fighterExplosionSound = explosionSound;
 		resetShootDelay();
 		startHitDelay();
+		setX(xPos);
+		setY(yPos);
+		startX = x;
+		startY = y;
 	}
 
 	public void resetShootDelay() {
@@ -93,8 +98,9 @@ public class Fighter extends SpriteObject implements ICollidableWithGameObjects 
 		for (GameObject go : collidedGameObjects) {
 			if ((go instanceof Alien || go instanceof AlienRocket) && hitDelay == 0) {
 				decreaseLives();
-				setX(world.getXFighter());
-				setY(world.getYFighter());
+				setX(startX);
+				setY(startY);
+				setDirectionSpeed(0, 0);
 				System.out.println(numLives);
 				fighterExplosionSound.cue(0);
 				fighterExplosionSound.play();
@@ -109,4 +115,10 @@ public class Fighter extends SpriteObject implements ICollidableWithGameObjects 
 	public void decreaseLives() {
 		numLives--;
 	}
+	
+	public int getNumLives() {
+		return numLives;
+	}
+	
+	
 }

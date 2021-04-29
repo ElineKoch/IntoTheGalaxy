@@ -1,8 +1,11 @@
 package IntoTheGalaxy;
 
 import java.util.*;
+
 import nl.han.ica.oopg.dashboard.Dashboard;
 import nl.han.ica.oopg.engine.GameEngine;
+import nl.han.ica.oopg.objects.Sprite;
+import nl.han.ica.oopg.persistence.FilePersistence;
 import nl.han.ica.oopg.view.View;
 import nl.han.ica.oopg.sound.Sound;
 
@@ -11,21 +14,22 @@ public class IntoTheGalaxy extends GameEngine {
 	private int time;
 	private int numWaves;
 	private int currentWave;
+	private int highscore;
+	private int score;
+	private FilePersistence persistence;
 
+	public static String MEDIA_URL = "src/main/java/IntoTheGalaxy/media/";
 	private Sound fighterShootSound, fighterExplosionSound, alienShootSound, alienExplosionSound;
 
 	private Dashboard gameDashboard;
 	private float widthDashboard;
 	private float widthGameScreen;
+	private TextObject[] textObjects = new TextObject[4];
 
 	private Fighter fighter;
-	private float xFighter;
-	private float yFighter;
 
 	public ArrayList<Alien> alienList;
 	public int[] numAliens = { 3, 20, 20 };
-
-	public static String MEDIA_URL = "src/main/java/IntoTheGalaxy/media/";
 
 	public static void main(String[] args) {
 		IntoTheGalaxy itg = new IntoTheGalaxy();
@@ -36,43 +40,57 @@ public class IntoTheGalaxy extends GameEngine {
 	public void setupGame() {
 		int worldWidth = 800;
 		int worldHeight = 600;
-		time = 0;
-		numWaves = 3;
-		currentWave = 1;
-
-		fighterShootSound = new Sound(this, MEDIA_URL.concat("fighterShoot.wav"));
-		fighterExplosionSound = new Sound(this, MEDIA_URL.concat("fighterExplosion.wav"));
-		alienShootSound = new Sound(this, MEDIA_URL.concat("alienShoot.wav"));
-		alienExplosionSound = new Sound(this, MEDIA_URL.concat("alienExplosion.wav"));
 
 		widthDashboard = worldWidth / 6;
 		widthGameScreen = worldWidth - widthDashboard;
 
-		xFighter = widthGameScreen / 2;
-		yFighter = widthGameScreen * 7 / 8;
+		time = 0;
+		numWaves = 3;
+		currentWave = 1;
+		score = 0;
 
+		initializePersistence();
+		initializeSound();
 		createObjects(worldWidth, worldHeight);
 		createView(worldWidth, worldHeight);
 	}
 
-	public void createObjects(int worldWidth, int worldHeight) {
-		createDashboard(worldWidth, worldHeight);
-		createFighter();
-		createAliens();
+	private void initializePersistence() {
+		persistence = new FilePersistence("main/java/IntoTheGalaxy/media/highscore.txt");
+		if (persistence.fileExists()) {
+			highscore = Integer.parseInt(persistence.loadDataString());
+		}
 	}
 
-	public void createDashboard(int worldWidth, int worldHeight) {
+	private void initializeSound() {
+		fighterShootSound = new Sound(this, MEDIA_URL.concat("fighterShoot.wav"));
+		fighterExplosionSound = new Sound(this, MEDIA_URL.concat("fighterExplosion.wav"));
+		alienShootSound = new Sound(this, MEDIA_URL.concat("alienShoot.wav"));
+		alienExplosionSound = new Sound(this, MEDIA_URL.concat("alienExplosion.wav"));
+	}
+
+	public void createObjects(int worldWidth, int worldHeight) {
+		createFighter(worldHeight);
+		createAliens();
+		createDashboard(worldWidth, worldHeight);
+	}
+
+	private void createDashboard(int worldWidth, int worldHeight) {
 		gameDashboard = new Dashboard(worldWidth - widthDashboard, 0, widthDashboard, worldHeight);
 		gameDashboard.setBackground(0, 0, 0);
+		for (int i = 0; i < textObjects.length; i++) {
+			textObjects[i] = new TextObject();
+			gameDashboard.addGameObject(textObjects[i], (int) widthDashboard / 2, (int) ((i + 0.5) * 100), 10);
+		}
 		addDashboard(gameDashboard);
 	}
 
-	public void createFighter() {
-		fighter = new Fighter(this, fighterShootSound, fighterExplosionSound);
-		addGameObject(fighter, xFighter, yFighter);
+	private void createFighter(int worldHeight) {
+		fighter = new Fighter(this, widthGameScreen / 2, worldHeight * 7 / 8, fighterShootSound, fighterExplosionSound);
+		addGameObject(fighter);
 	}
 
-	public void createAliens() {
+	private void createAliens() {
 		alienList = new ArrayList<Alien>();
 
 		for (int i = 0; i < numAliens[0]; i++) {
@@ -106,20 +124,33 @@ public class IntoTheGalaxy extends GameEngine {
 	public void update() {
 		time++;
 		spawnNewAliens();
-		
+		refreshDashboardText();
 		endGame();
 	}
-	
-	public void spawnNewAliens() {
+
+	private void spawnNewAliens() {
 		if (alienList.size() == 0) {
 			currentWave++;
 			createAliens();
 		}
 	}
-	
+
+	private void refreshDashboardText() {
+		textObjects[0].setText("Highscore: " + highscore);
+		textObjects[1].setText("Score: " + score);
+		textObjects[2].setText("Wave: " + currentWave);
+		textObjects[3].setText("Lives: " + fighter.getNumLives());
+	}
+
 	public void endGame() {
-		if (currentWave > numWaves) {
+		if (currentWave > numWaves || fighter.getNumLives() == 0) {
 			deleteAllGameOBjects();
+
+			if (score > highscore) {
+				persistence.saveData(Integer.toString(score));
+				highscore = Integer.parseInt(persistence.loadDataString());
+				refreshDashboardText();
+			}
 		}
 	}
 
@@ -127,11 +158,7 @@ public class IntoTheGalaxy extends GameEngine {
 		return time;
 	}
 
-	public float getXFighter() {
-		return xFighter;
-	}
-
-	public float getYFighter() {
-		return yFighter;
+	public void increaseScore(int points) {
+		score += points;
 	}
 }
