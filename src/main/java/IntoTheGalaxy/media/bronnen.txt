@@ -1,2 +1,3 @@
-SpaceBackGround: https://opengameart.org/content/space-backgrounds-3
-Sounds: https://opengameart.org/content/space-shooter-sound-effects
+SpaceBackground.png -> https://opengameart.org/content/space-backgrounds-3
+Overige afbeeldingen -> Zelfgemaakt
+Alle geluiden -> https://opengameart.org/content/space-shooter-sound-effects

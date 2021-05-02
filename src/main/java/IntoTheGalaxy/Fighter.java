@@ -7,6 +7,10 @@ import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
 
+/**
+ * A spaceship that can be controlled with the WASD keys and shoot Alien with the E key, 
+ * can be hit by Alien and AlienRocket and loses a life, deleted from world if 3 lives are gone.
+ */
 public class Fighter extends SpriteObject implements ICollidableWithGameObjects {
 	private IntoTheGalaxy world;
 	private Sound fighterShootSound, fighterExplosionSound;
@@ -27,15 +31,24 @@ public class Fighter extends SpriteObject implements ICollidableWithGameObjects 
 		startX = x;
 		startY = y;
 	}
-
+	
+	/**
+	 * Set the value of the shootDelay attribute to 0.
+	 */
 	public void resetShootDelay() {
 		shootDelay = 0;
 	}
-
+	
+	/**
+	 * Set the value of the shootDelay attribute to 0.
+	 */
 	public void startHitDelay() {
 		hitDelay = 120;
 	}
-
+	
+	/**
+	 * Overrides GameObject.update(), keeps fighter within the screen, reduces delays over time.
+	 */
 	@Override
 	public void update() {
 		if (getX() <= 0) {
@@ -59,15 +72,15 @@ public class Fighter extends SpriteObject implements ICollidableWithGameObjects 
 			shootDelay--;
 		}
 
-		if (shootDelay > 0) {
-			shootDelay--;
-		}
-
 		if (hitDelay > 0) {
 			hitDelay--;
 		}
 	}
-
+	
+	/**
+	 * Control the fighter by using the WASD and E keys. 
+	 * The E key creates a FighterRocket object that can hit Alien.
+	 */
 	@Override
 	public void keyPressed(int keyCode, char key) {
 		final int speed = 4;
@@ -85,14 +98,23 @@ public class Fighter extends SpriteObject implements ICollidableWithGameObjects 
 		}
 
 		if (key == 'e' && shootDelay == 0) {
-			FighterRocket rocketF = new FighterRocket(world, getX() + getWidth() / 2, getY(), 4, 16);
-			world.addGameObject(rocketF, rocketF.getX(), rocketF.getY());
-			shootDelay += 48;
-			fighterShootSound.cue(0);
-			fighterShootSound.play();
+			shoot();
 		}
 	}
-
+	
+	private void shoot() {
+		FighterRocket rocketF = new FighterRocket(world, getX() + getWidth() / 2, getY(), 4, 16);
+		world.addGameObject(rocketF, rocketF.getX(), rocketF.getY());
+		shootDelay += 24;
+		fighterShootSound.cue(0);
+		fighterShootSound.play();
+	}
+	
+	/**
+	 * Implements the ICollidableWithGameObjects interface, can collide with Alien and AlienRocket. 
+	 * If fighter gets hit, it goes to the starting position and loses a life 
+	 * until it disappears from the world at 3 hits.
+	 */
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		for (GameObject go : collidedGameObjects) {
@@ -101,7 +123,6 @@ public class Fighter extends SpriteObject implements ICollidableWithGameObjects 
 				setX(startX);
 				setY(startY);
 				setDirectionSpeed(0, 0);
-				System.out.println(numLives);
 				fighterExplosionSound.cue(0);
 				fighterExplosionSound.play();
 				if (numLives == 0) {
@@ -111,14 +132,18 @@ public class Fighter extends SpriteObject implements ICollidableWithGameObjects 
 			}
 		}
 	}
-
+	
+	/**
+	 * Decreases the value of the numLives attribute by 1.
+	 */
 	public void decreaseLives() {
 		numLives--;
 	}
 	
+	/**
+	 * Returns the value of the numLives attribute.
+	 */
 	public int getNumLives() {
 		return numLives;
 	}
-	
-	
 }

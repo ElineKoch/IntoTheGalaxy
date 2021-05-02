@@ -7,6 +7,11 @@ import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
 import nl.han.ica.oopg.sound.Sound;
 
+/**
+ * Abstract class to create an Alien. Aliens move side to side at the top of the screen 
+ * and can shoot and dive down to the bottom of the screen 
+ * at times decided partly by a random number generator.
+ */
 public abstract class Alien extends SpriteObject implements ICollidableWithGameObjects {
 	protected IntoTheGalaxy world;
 	protected float speed = 1.5f;
@@ -29,23 +34,53 @@ public abstract class Alien extends SpriteObject implements ICollidableWithGameO
 		alienShootSound = shootSound;
 		alienExplosionSound = explosionSound;
 	}
-
+	
+	/**
+	 * Set the value of the startX attribute. 
+	 */
 	public void setStartX(float x) {
 		startX = x;
 	}
-
+	
+	/**
+	 * Returns the value of the startX attribute. 
+	 */
 	public float getStartX() {
 		return startX;
 	}
-
+	
+	/**
+	 * Set the value of the startY attribute. 
+	 */
 	public void setStartY(float y) {
 		startY = y;
 	}
-
+	
+	/**
+	 * Returns the value of the startY attribute. 
+	 */
 	public float getStartY() {
 		return startY;
 	}
-
+	
+	/**
+	 * Sets the value of the numLives attribute. 
+	 */
+	public void setLives(int lives) {
+		numLives = lives;
+	}
+	
+	/**
+	 * Sets the value of the numLives attribute. 
+	 */
+	public void decreaseLives() {
+		numLives--;
+	}
+	
+	/**
+	 * Overrides GameObject.update(), causes the alien to shoot and make dives, 
+	 * the dive action itself is implemented in the subclasses.
+	 */
 	@Override
 	public void update() {
 		if (x < getStartX() - getWidth() * 2) {
@@ -57,7 +92,11 @@ public abstract class Alien extends SpriteObject implements ICollidableWithGameO
 		shoot();
 		makeDive();
 	}
-
+	
+	/**
+	 * Implements the ICollidableWithGameObjects interface. Collides with FighterRocket, loses a life,
+	 * if lives are 0, deletes alien from the world and increases score.
+	 */
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		for (GameObject go : collidedGameObjects) {
@@ -68,20 +107,15 @@ public abstract class Alien extends SpriteObject implements ICollidableWithGameO
 				if (numLives == 0) {
 					world.deleteGameObject(this);
 					world.alienList.remove(this);
-					world.increaseScore(50);
+					world.score.increaseScore(50);
 				}
 			}
 		}
 	}
 
-	public void setLives(int lives) {
-		numLives = lives;
-	}
-
-	public void decreaseLives() {
-		numLives--;
-	}
-
+	/**
+	 * Creates an AlienRocket object that can hit fighters at semi random times.
+	 */
 	public void shoot() {
 		if ((world.getTime() * 100 + 1000) % (rand.nextInt(40000) + 1) == 500) {
 			AlienRocket rocketA = new AlienRocket(world, getX() + getWidth() / 2, getY(), 4, 16);
@@ -90,7 +124,10 @@ public abstract class Alien extends SpriteObject implements ICollidableWithGameO
 			alienShootSound.play();
 		}
 	}
-
+	
+	/**
+	 * Initiates the dive action at semi random times.
+	 */
 	public void makeDive() {
 		if ((world.getTime() * 100 + 1000) % (rand.nextInt(100000) + 1) == 500) {
 			doDiveAction();
@@ -99,7 +136,16 @@ public abstract class Alien extends SpriteObject implements ICollidableWithGameO
 			returnToStart();
 		}
 	};
-
+	
+	/**
+	 *Defines what the dive looks like. Has to be implemented in the subclass.
+	 */
+	public abstract void doDiveAction();
+	
+	/**
+	 * If the alien is below the bottom of the screen, because of a dive, 
+	 * it return to the starting position and the ySpeed is set to 0.
+	 */
 	public void returnToStart() {
 		if (getY() > world.getHeight() - getHeight()) {
 			setySpeed(0);
@@ -107,6 +153,4 @@ public abstract class Alien extends SpriteObject implements ICollidableWithGameO
 			setY(startY);
 		}
 	}
-
-	public abstract void doDiveAction();
 }
