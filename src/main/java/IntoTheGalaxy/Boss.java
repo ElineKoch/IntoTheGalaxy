@@ -9,8 +9,7 @@ import nl.han.ica.oopg.sound.Sound;
 public class Boss extends Alien {
 
 	public Boss(IntoTheGalaxy world, float xPos, float yPos, Sound shootSound, Sound explosionSound) {
-		super(world, xPos, yPos, shootSound, explosionSound);
-		sprite = new Sprite(IntoTheGalaxy.MEDIA_URL.concat("Boss1.png"));
+		super(world, xPos, yPos, shootSound, explosionSound, new Sprite(IntoTheGalaxy.MEDIA_URL.concat("Boss1.png")));
 		setLives(2);
 		setStartX(xPos * 150);
 	}

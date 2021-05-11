@@ -48,29 +48,21 @@ public class IntoTheGalaxy extends GameEngine {
 		worldHeight = 600;
 		
 		initializeSound();
-
-		switch (gameState) {
-			case 0:
-				createStartScreen();
-				break;
-			case 1:
-				time = 0;
-				numWaves = 3;
-				currentWave = 1;
-				score.setScore(0);
-				
-				widthDashboard = worldWidth / 6;
-				widthGameScreen = worldWidth - widthDashboard;
-				
-				createObjects();
-				gameState = 2;
-				break;
-			case 3:
-				createEndScreen();
-				break;
-		}
-		
+		createStartScreen();
 		createView();
+	}
+	
+	public void startGame() {
+		time = 0;
+		numWaves = 3;
+		currentWave = 1;
+		score.setScore(0);
+		
+		widthDashboard = worldWidth / 6;
+		widthGameScreen = worldWidth - widthDashboard;
+		
+		createObjects();
+		gameState = 1;
 	}
 
 	private void initializeSound() {
@@ -182,7 +174,7 @@ public class IntoTheGalaxy extends GameEngine {
 	 */
 	@Override
 	public void update() {
-		if (gameState == 2) {
+		if (gameState == 1) {
 			time++;
 			spawnNewAliens();
 			refreshDashboardText();
@@ -212,8 +204,8 @@ public class IntoTheGalaxy extends GameEngine {
 			deleteAllGameOBjects();
 			deleteAllDashboards();
 			score.saveHighscore();
-			gameState = 3;
-			setupGame();
+			gameState = 2;
+			createEndScreen();
 		}
 	}
 	

@@ -16,8 +16,7 @@ public class StartButton extends Button {
 	public void doButtonAction() {
 		world.deleteAllGameOBjects();
 		world.deleteAllDashboards();
-		world.setGameState(1);
-		world.setupGame();
+		world.startGame();
 	}
 	
 }

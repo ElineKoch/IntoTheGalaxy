@@ -10,8 +10,7 @@ import nl.han.ica.oopg.sound.Sound;
 public class Bee extends Alien {
 
 	public Bee(IntoTheGalaxy world, int xPos, int yPos, Sound shootSound, Sound explosionSound) {
-		super(world, xPos, yPos, shootSound, explosionSound);
-		sprite = new Sprite(IntoTheGalaxy.MEDIA_URL.concat("Bee.png"));
+		super(world, xPos, yPos, shootSound, explosionSound, new Sprite(IntoTheGalaxy.MEDIA_URL.concat("Bee.png")));
 	}
 	
 	/**

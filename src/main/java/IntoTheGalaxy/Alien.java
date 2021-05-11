@@ -21,8 +21,8 @@ public abstract class Alien extends SpriteObject implements ICollidableWithGameO
 	protected Random rand;
 	protected int numLives = 1;
 
-	public Alien(IntoTheGalaxy world, float xPos, float yPos, Sound shootSound, Sound explosionSound) {
-		super(new Sprite(IntoTheGalaxy.MEDIA_URL.concat("Butterfly.png")));
+	public Alien(IntoTheGalaxy world, float xPos, float yPos, Sound shootSound, Sound explosionSound, Sprite sprite) {
+		super(sprite);
 		this.world = world;
 		setDirectionSpeed(90, speed);
 		setX(xPos * 50);
